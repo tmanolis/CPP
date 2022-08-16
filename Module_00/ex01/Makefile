@@ -31,7 +31,9 @@ INC_PATH = ./incl/PhoneBook.hpp
 #########################################
 #			SOURCES	FILES				#
 #########################################
-SRCS = main.cpp 									\
+SRCS = main.cpp 							\
+	Contact.cpp								\
+	PhoneBook.cpp							\
 	
 
 SRC	= $(addprefix $(SRCS_DIR),$(SRCS))
