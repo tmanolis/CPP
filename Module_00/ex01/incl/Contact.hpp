@@ -1,7 +1,9 @@
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
-#include <string>
+# include <string>
+# include <iostream>
+# include "colors.hpp"
 
 class Contact {
 	
@@ -16,6 +18,9 @@ class Contact {
 		Contact(void);
 		~Contact(void);
 
+		void	FillContact(void);
+		void	PrintDetails(void) const;
+		
 		static int	nb_Contacts;
 };
 

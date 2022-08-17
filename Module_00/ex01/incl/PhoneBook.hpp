@@ -8,9 +8,9 @@
 class PhoneBook {
 
 	private:
-		Contact	_contact[8];
+		Contact	_Contact[8];
 
-		void	prompt(void) const;
+		void	_prompt(void) const;
 
 	public:
 		PhoneBook(void);
