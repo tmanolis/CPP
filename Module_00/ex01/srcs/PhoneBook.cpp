@@ -34,7 +34,6 @@ void	PhoneBook::add(void)
 		Contact::nb_Contacts += 1;
 	
 	shift_contacts(this->_Contact);
-	
 	this->_Contact[0].FillContact();
 	
 	return ;
