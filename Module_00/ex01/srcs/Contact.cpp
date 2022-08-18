@@ -68,6 +68,8 @@ void	Contact::FillContact(void)
 static void	print_formated_info(std::string str)
 {
 	std::cout << std::setw(10);
+	if (str.length() > 10)
+		str = str.substr(0, 9) + ".";
 	std::cout << str << "|";
 
 }
@@ -77,7 +79,7 @@ void	Contact::PrintContact(int i) const
 	std::cout << "| " << i + 1 << "|";
 	print_formated_info(this->_FirstName);
 	print_formated_info(this->_LastName);
-	print_formated_info(this->_PhoneNumber);
+	print_formated_info(this->_NickName);
 	std::cout << std::endl;
 }
 

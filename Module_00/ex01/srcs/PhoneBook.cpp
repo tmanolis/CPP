@@ -10,7 +10,7 @@ void	PhoneBook::_prompt(void) const
 
 void	PhoneBook::_PrintContactsList(void) const
 {
-	std::cout << "\n              PhoneBook              " << std::endl;
+	std::cout << BWHT << "\n              PhoneBook              " << RESET << std::endl;
 	std::cout << "|-----------------------------------|" << std::endl;
 	std::cout << "|Id|First Name| Last Name|  Nickname|" << std::endl;
 	for (int i = 0; i < 8; i++)
