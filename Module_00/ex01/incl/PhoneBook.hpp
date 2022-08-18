@@ -16,8 +16,11 @@ class PhoneBook {
 		PhoneBook(void);
 		~PhoneBook(void);
 
+		Contact	getContact(int index) const;
+
 		void	add(void);
 		void	search(void) const;
+
 
 };
 

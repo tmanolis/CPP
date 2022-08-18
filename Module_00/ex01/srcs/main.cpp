@@ -8,7 +8,7 @@ int	main(void)
 	while (1)
 	{
 		std::cout << std::endl << BCYN << "Please enter a command :" << RESET << std::endl;
-		std::getline(std::cin, cmd);
+		std::cin >> cmd;
 		if (cmd == "ADD")
 			phonebook.add();
 		else if (cmd == "SEARCH")

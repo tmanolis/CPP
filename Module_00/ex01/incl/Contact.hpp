@@ -17,8 +17,11 @@ class Contact {
 		Contact(void);
 		~Contact(void);
 
-		void	FillContact(void);
-		void	PrintDetails(void) const;
+		std::string	get_FirstName(void) const;
+		
+		void		FillContact(void);
+		void		PrintContact(void) const;
+		void		PrintDetails(void) const;
 		
 		static int	nb_Contacts;
 };
