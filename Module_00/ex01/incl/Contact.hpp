@@ -6,6 +6,9 @@
 # include <iomanip>
 # include "colors.hpp"
 
+std::string	get_input(void);
+void		print_formated_info(std::string str);
+
 class Contact {
 	
 	private:

@@ -5,6 +5,9 @@
 # include "colors.hpp"
 # include "Contact.hpp"
 
+void	shift_contacts(Contact *Contacts);
+int		get_index(const Contact *Contact);
+
 class PhoneBook {
 
 	private:
