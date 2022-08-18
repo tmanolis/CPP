@@ -83,11 +83,19 @@ std::string	get_input(void)
 	}
 }
 
+/**
+ * @brief change the format of the input stream
+ * and trunc the str if it has more than 10 chars
+ * 
+ * @param str is a copy of the contact info that need to be print
+ * (ex : FirstName, LastName, etc...)
+ */
+
 void	print_formated_info(std::string str)
 {
 	std::cout << std::setw(10);
 	if (str.length() > 10)
-		str = str.substr(0, 9) + ".";
+		str = str.substr(0, 9) + "."; // "+" operator append the following string
 	std::cout << str << "|";
 
 }
