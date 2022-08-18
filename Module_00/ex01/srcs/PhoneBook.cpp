@@ -8,6 +8,16 @@ void	PhoneBook::_prompt(void) const
 	std::cout << " When you're done, type " << BWHT << "EXIT" << RESET << std::endl;
 }
 
+void	PhoneBook::_PrintContactsList(void) const
+{
+	std::cout << "\n              PhoneBook              " << std::endl;
+	std::cout << "|-----------------------------------|" << std::endl;
+	std::cout << "|Id|First Name| Last Name|  Nickname|" << std::endl;
+	for (int i = 0; i < 8; i++)
+		this->_Contact[i].PrintContact(i);
+	std::cout << std::endl;
+}
+
 PhoneBook::PhoneBook(void)
 {
 	this->_prompt();
@@ -69,12 +79,12 @@ static int	get_index(const Contact *Contact)
 		{
 			str = Contact[index - 1].get_FirstName();
 			if (str.empty())
-				std::cout << RED << "This contact is empty" << RESET << std::endl;
+				std::cout << RED << "This contact is empty\n" << RESET << std::endl;
 			else
 				return (index - 1);
 		}
 		else
-			std::cout << RED << str << " isn't valid dude" << RESET << std::endl;
+			std::cout << RED << str << " isn't valid dude\n" << RESET << std::endl;
 	}
 }
 
@@ -82,13 +92,11 @@ void	PhoneBook::search(void) const
 {
 	int index;
 
-	for (int i = 0; i < Contact::nb_Contacts; i++)
-		this->_Contact[i].PrintContact();
-
 	if (Contact::nb_Contacts > 0) // avoid infinite loop if 0 contact has been added
 	{
+		this->_PrintContactsList();
 		index = get_index(this->_Contact);
-		this->_Contact[index].PrintDetails();
+		this->_Contact[index].PrintContactDetails();
 	}
 	else
 		std::cout << BWHT << "No contacts have been added yet" << RESET << std::endl;	

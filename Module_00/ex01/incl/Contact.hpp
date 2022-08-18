@@ -2,6 +2,8 @@
 # define CONTACT_HPP
 
 # include <iostream>
+# include <string>
+# include <iomanip>
 # include "colors.hpp"
 
 class Contact {
@@ -18,10 +20,10 @@ class Contact {
 		~Contact(void);
 
 		std::string	get_FirstName(void) const;
-		
+
 		void		FillContact(void);
-		void		PrintContact(void) const;
-		void		PrintDetails(void) const;
+		void		PrintContact(int i) const;
+		void		PrintContactDetails(void) const;
 		
 		static int	nb_Contacts;
 };

@@ -11,6 +11,7 @@ class PhoneBook {
 		Contact	_Contact[8];
 
 		void	_prompt(void) const;
+		void	_PrintContactsList(void) const;
 
 	public:
 		PhoneBook(void);

@@ -1,4 +1,4 @@
-#include "Contact.hpp"
+# include "Contact.hpp"
 
 int Contact::nb_Contacts = 0;
 
@@ -16,6 +16,15 @@ std::string	Contact::get_FirstName(void) const
 {
 	return (this->_FirstName);
 }
+
+/**
+ * Choose to use getline and not std::cin >> str to handle input with spaces
+ * ! if you call std::cin >> var; just before getline(), 
+ * ! there will be a newline still remaining in the input stream, 
+ * ! after reading the input variable.
+ * For more infos and how to handle issue :
+ * https://www.digitalocean.com/community/tutorials/getline-in-c-plus-plus
+ */
 
 static std::string	get_input(void)
 {
@@ -37,15 +46,6 @@ static std::string	get_input(void)
 	}
 }
 
-/**
- * Choose to use getline and not std::cin >> str to handle input with spaces
- * ! if you call std::cin >> var; just before getline(), 
- * ! there will be a newline still remaining in the input stream, 
- * ! after reading the input variable.
- * For more infos and how to handle issue :
- * https://www.digitalocean.com/community/tutorials/getline-in-c-plus-plus
- */
-
 void	Contact::FillContact(void)
 {
 	std::string	str;
@@ -65,12 +65,23 @@ void	Contact::FillContact(void)
 	this->_DarkestSecret = get_input();
 }
 
-void	Contact::PrintContact(void) const
+static void	print_formated_info(std::string str)
 {
+	std::cout << std::setw(10);
+	std::cout << str << "|";
 
 }
 
-void	Contact::PrintDetails(void) const
+void	Contact::PrintContact(int i) const
+{
+	std::cout << "| " << i + 1 << "|";
+	print_formated_info(this->_FirstName);
+	print_formated_info(this->_LastName);
+	print_formated_info(this->_PhoneNumber);
+	std::cout << std::endl;
+}
+
+void	Contact::PrintContactDetails(void) const
 {
 	std::cout << "• First name : " << this->_FirstName << std::endl;
 	std::cout << "• Last name : " << this->_LastName << std::endl;
