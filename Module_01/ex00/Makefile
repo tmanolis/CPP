@@ -1,7 +1,7 @@
 #########################################
 #				PROGRAMS				#
 #########################################
-NAME = phonebook
+NAME = brain
 
 #########################################
 #				COMMANDS				#
@@ -26,15 +26,15 @@ IFLAGS := -I incl/
 #########################################
 #			FILES PATH					#
 #########################################
-INC_PATH = ./incl/PhoneBook.hpp
+INC_PATH = ./incl/Zombie.hpp
 
 #########################################
 #			SOURCES	FILES				#
 #########################################
 SRCS = main.cpp 							\
-	Contact.cpp								\
-	PhoneBook.cpp							\
-	utils.cpp								\
+	newZombie.cpp							\
+	randomChump.cpp							\
+	Zombie.cpp								\
 	
 SRC	= $(addprefix $(SRCS_DIR),$(SRCS))
 
