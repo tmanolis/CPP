@@ -1,9 +1,11 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
-# include <iostream>
 # include "colors.hpp"
 # include "Contact.hpp"
+# include <iostream>
+# include <string>
+# include <iomanip>
 
 void	shift_contacts(Contact *Contacts);
 int		get_index(const Contact *Contact);
