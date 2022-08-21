@@ -3,24 +3,22 @@
 
 # include <iostream>
 # include <string>
-# include "Weapon.hpp"
+#include "Weapon.hpp"
 
 class HumanB
 {
 private:
-	/* data */
+	std::string const	_Name;
+	Weapon				*_weapon;
+
 public:
-	HumanB(/* args */);
+
+
+	HumanB(std::string name);
 	~HumanB();
+
+	void	setWeapon(Weapon &weapon);
+	void	attack(void) const;
 };
-
-HumanB::HumanB(/* args */)
-{
-}
-
-HumanB::~HumanB()
-{
-}
-
 
 #endif

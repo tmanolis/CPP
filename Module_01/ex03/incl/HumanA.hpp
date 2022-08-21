@@ -9,10 +9,9 @@ class HumanA
 {
 private:
 	std::string const	_Name;
+	Weapon	&_weapon;
 
 public:
-
-	Weapon	&weapon;
 
 	HumanA(std::string name, Weapon &WeaponRef);
 	~HumanA();

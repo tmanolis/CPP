@@ -3,7 +3,6 @@
 
 # include <iostream>
 # include <string>
-# include "HumanA.hpp"
 
 class Weapon
 {
@@ -13,12 +12,11 @@ private:
 public:
 	Weapon(std::string type);
 	~Weapon();
+	Weapon();
 
 	std::string const & getType(void) const;
 	void				setType(std::string new_type);
 
 };
-
-
 
 #endif
