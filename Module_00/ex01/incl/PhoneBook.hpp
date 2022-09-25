@@ -6,6 +6,7 @@
 # include <iostream>
 # include <string>
 # include <iomanip>
+# include <cstdlib>
 
 void	shift_contacts(Contact *Contacts);
 int		get_index(const Contact *Contact);

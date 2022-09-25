@@ -38,6 +38,12 @@ int	get_index(const Contact *Contact)
 	{
 		std::cout << BWHT << "Enter an index for more details : " << RESET;
 		getline(std::cin, str);
+		if (std::cin.fail())
+		{	
+			std::cin.clear();
+			std::cin.ignore();
+			exit(-1);
+		}
 		index = atoi(str.c_str()); // convert std::str in a const char*
 		if (index > 0 && index < 9)
 		{
