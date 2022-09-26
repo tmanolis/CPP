@@ -7,16 +7,13 @@ int	main(void)
 
 	while (1)
 	{
-		cmd = '\0'; 
+		cmd = '\0'; // better handle of CTRL+D
 		std::cout << std::endl << BCYN << "Please enter a command :" << RESET << std::endl;
 		std::cin >> cmd;
 		if (cmd == "ADD")
 			phonebook.add();
 		else if (cmd == "SEARCH")
-		{
 			phonebook.search();
-			// cmd = '\0'; 
-		}
 		else if (cmd == "EXIT" || std::cin.eof())
 			break ;
 		else
