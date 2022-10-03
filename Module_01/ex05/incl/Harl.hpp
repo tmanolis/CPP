@@ -16,7 +16,7 @@ class Harl
 		void	_error(void) const;
 
 	public:
-		Harl(/* args */);
+		Harl();
 		~Harl();
 
 		void    complain(std::string level) const;
