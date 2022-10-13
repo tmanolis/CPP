@@ -1,6 +1,6 @@
 #include "Replace.hpp"
 
-Replace::Replace(std::string name, std::string str1, std::string str2) : _FileName(name), _Str1(str1), _Str2(str2)
+Replace::Replace(const char *name, std::string str1, std::string str2) : _FileName(name), _Str1(str1), _Str2(str2)
 {
 	std::cout << "FileName : " << this->_FileName << std::endl;
 	std::cout << "String to Replace : " << this->_Str1 << std::endl;
@@ -23,7 +23,6 @@ Replace::~Replace()
  * useful link : 
  * https://stackoverflow.com/questions/2602013/read-whole-ascii-file-into-c-stdstring
  */
-
 bool	Replace::RetrieveFileContent(void)
 {
 	std::ifstream		ifs(this->_FileName);
@@ -46,7 +45,6 @@ bool	Replace::RetrieveFileContent(void)
  * 		find() returns 'std::string::npos' if there are no occurrences.
  * - std::string::replace is forbidden, used erase and insert instead.
  */
-
 void	Replace::ReplaceContent(void)
 {
 	if(this->_Str1.empty())
@@ -68,7 +66,8 @@ void	Replace::ReplaceContent(void)
 
 void	Replace::PutContentIntoNewFile(void) const
 {
-	std::ofstream		ofs(this->_FileName + ".replace");
+	std::string		Newfile = (std::string)this->_FileName + ".replace";
+	std::ofstream	ofs(Newfile.c_str()); // c.str() convert string into const char*
 
 	ofs << this->_Content;
 	ofs.close();

@@ -8,7 +8,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	}
 	
-	Replace	Replace((std::string)argv[1], (std::string)argv[2], (std::string)argv[3]);
+	Replace	Replace(argv[1], (std::string)argv[2], (std::string)argv[3]);
 
 	if (Replace.RetrieveFileContent() == false)
 	{
