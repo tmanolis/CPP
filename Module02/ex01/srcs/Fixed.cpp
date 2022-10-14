@@ -1,6 +1,6 @@
 #include "Fixed.hpp"
 
-int	const Fixed::_nBits = 0;
+int	const Fixed::_nBits = 8;
 
 // Default Constructor 
 Fixed::Fixed() : _RawBits(0)
@@ -15,18 +15,37 @@ Fixed::Fixed(Fixed const &src)
 	*this = src;
 }
 
-// Parametric constructor
-Fixed::Fixed(const int value)
+/**
+ * @brief Parametric constructor :
+ * Take a int as argument and convert it into a fixed point
+ * 
+ * Bits shifting allow to place the decimal at the '8bits'
+ * (it changes where 2^0 is)
+ * @param value int value which will be converted
+ */
+Fixed::Fixed(int const value)
 {
 	std::cout << "Int constructor called" << std::endl;
+	this->_RawBits = value << _nBits;
 
 }
 
-// Parametric constructor
-Fixed::Fixed(const float value)
+/**
+ * @brief Parametric constructor :
+ * Take a float as argument and convert it into a fixed point
+ * 
+ * Use mantisse and exoosant
+ * @param value float value which will be converted
+ * 
+ * For the conversion check these articles :
+ * https://www.positron-libre.com/cours/electronique/systeme-numeration/nombre-virgule-flottante.php
+ * https://embeddedartistry.com/blog/2018/07/12/simple-fixed-point-conversion-in-c/
+ * 
+ */
+Fixed::Fixed(float const value)
 {
 	std::cout << "Float constructor called" << std::endl;
-
+	this->_RawBits = (int)roundf(value * (1 << _nBits));
 }
 
 // Destructor
@@ -47,7 +66,7 @@ Fixed & Fixed::operator=(Fixed const &rhs)
 
 int		Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
+	// std::cout << "getRawBits member function called" << std::endl;
 	
 	return (this->_RawBits);
 }
@@ -59,12 +78,12 @@ void 	Fixed::setRawBits(int const raw)
 
 float	Fixed::toFloat(void) const
 {
-
+	return ((float)this->_RawBits / (float)(1 << _nBits));
 }
 
 int		Fixed::toInt(void) const
 {
-
+	return (this->_RawBits >> _nBits);
 }
 
 // Stream Overload Operator

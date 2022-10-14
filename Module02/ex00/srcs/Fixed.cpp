@@ -1,6 +1,6 @@
 #include "Fixed.hpp"
 
-int	const Fixed::_nBits = 0;
+int	const Fixed::_nBits = 8;
 
 // Default Constructor 
 Fixed::Fixed() : _RawBits(0)

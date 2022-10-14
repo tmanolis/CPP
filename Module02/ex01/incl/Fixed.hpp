@@ -2,6 +2,7 @@
 # define FIXED_HPP
 
 # include <iostream>
+# include <cmath>
 
 class Fixed
 {
@@ -11,8 +12,8 @@ class Fixed
 
 	public:
 		Fixed(); 					// default constructor
-		Fixed(const int value); 	// parametric constructor
-		Fixed(const float value); 	// parametric constructor
+		Fixed(int const value); 	// parametric constructor
+		Fixed(float const value); 	// parametric constructor
 		Fixed(Fixed const & src);	// copy constructor
 		~Fixed();					// destructor
 
