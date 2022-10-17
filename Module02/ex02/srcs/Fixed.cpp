@@ -3,6 +3,7 @@
 int	const Fixed::_nBits = 8;
 
 // *** CONSTRUCTORS & DESTRUCTOR *** //
+
 // Default Constructor 
 Fixed::Fixed() : _RawBits(0)
 {
@@ -67,6 +68,7 @@ Fixed & Fixed::operator=(Fixed const &rhs)
 // *** COMPARISON OPERATORS OVERLOAD *** //
 // Results when using comparison operator is 
 // '1' when it's true, and '0' when it's false
+
 bool	Fixed::operator>(Fixed const &rhs) const
 {
 	return (this->_RawBits > rhs.getRawBits());
@@ -100,6 +102,7 @@ bool	Fixed::operator!=(Fixed const &rhs) const
 // *** ARITHMETIC OPERATORS OVERLOAD *** //
 // nota bene : the return line could also be written without precising 'Fixed'
 // 				ex : return ((this->toFloat() + rhs.toFloat());
+
 Fixed	Fixed::operator+(Fixed const &rhs) const
 {
 	return Fixed(this->toFloat() + rhs.toFloat());
@@ -131,6 +134,7 @@ Fixed	Fixed::operator/(Fixed const &rhs) const
  * https://stackoverflow.com/questions/53182109/trying-to-overload-increment-operator-in-c
  * https://learn.microsoft.com/fr-fr/cpp/cpp/increment-and-decrement-operator-overloading-cpp?view=msvc-170
  */
+
 Fixed &	Fixed::operator++() // ++i
 {
 	this->_RawBits++;
@@ -161,6 +165,8 @@ Fixed	Fixed::operator--(int) // i--
 	return(tmp);
 }
 
+// *** PUBLIC MEMBER FUNCTIONS *** //
+
 int		Fixed::getRawBits(void) const
 {
 	// std::cout << "getRawBits member function called" << std::endl;
@@ -181,6 +187,38 @@ float	Fixed::toFloat(void) const
 int		Fixed::toInt(void) const
 {
 	return (this->_RawBits >> _nBits);
+}
+
+Fixed	Fixed::min(Fixed &a, Fixed &b)
+{
+	if (a < b)
+		return (a);
+	else
+		return (b);
+}
+
+Fixed const	Fixed::min(Fixed const &a, Fixed const &b)
+{
+	if (a < b)
+		return (a);
+	else
+		return (b);
+}
+
+Fixed	Fixed::max(Fixed &a, Fixed &b)
+{
+	if (a >= b)
+		return (a);
+	else
+		return (b);
+}
+
+Fixed const	Fixed::max(Fixed const &a, Fixed const &b)
+{
+	if (a >= b)
+		return (a);
+	else
+		return (b);
 }
 
 // Stream Operator Overload
