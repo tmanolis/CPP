@@ -19,7 +19,7 @@ OBJ_DIR = objs/
 #########################################
 #			FLAGS COMPILATION			#
 #########################################
-CFLAGS = -Wall -Werror -Wextra -std=c++98
+CFLAGS = -Wall -Werror -Wextra -std=c++98 -MMD -MP
 # CFLAGS += -fsanitize=address  -Wno-unused
 IFLAGS := -I incl/
 
@@ -40,6 +40,7 @@ SRC	= $(addprefix $(SRCS_DIR),$(SRCS))
 #            OBJECT FILES    	        #
 #########################################
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.cpp=.o))
+DEPS = $(OBJS:.o=.d)
 
 #########################################
 #				COLORS					#
@@ -54,6 +55,10 @@ EOC		:="\033[0;0m"
 #				RULES					#
 #########################################
 all:	${NAME}
+
+# allows to include all dependencies files created
+# in case 
+-include $(DEPS) 
 
 ${OBJ_DIR}%.o : ${SRCS_DIR}%.cpp
 	@$(MKDIR) $(@D)
