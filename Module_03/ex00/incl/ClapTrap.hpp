@@ -6,16 +6,17 @@
 class ClapTrap
 {
 private:
-	std::string const	_Name;
-	static unsigned int	_HitPoints;
-	static unsigned int	_EnergyPoints;
-	static unsigned int	_AttackDamage;  
+	std::string 	_Name;
+	unsigned int	_HitPoints;
+	unsigned int	_EnergyPoints;
+	unsigned int	_AttackDamage;  
 
 public:
 	ClapTrap(); 						// default constructor
-	ClapTrap(std::string const name); 	// Parametric constructor
 	ClapTrap(ClapTrap const &src);		// copy constructor
 	~ClapTrap();						// destructor 
+
+	ClapTrap(std::string const name); 	// Parametric constructor
 
 	ClapTrap & operator=(ClapTrap const &rhs);	// assignment operator overload
 

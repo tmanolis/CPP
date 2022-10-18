@@ -32,7 +32,7 @@ INC_PATH = ./incl/ClapTrap.hpp
 #			SOURCES	FILES				#
 #########################################
 SRCS = main.cpp 						\
-	ClapTrap.cpp							\
+	ClapTrap.cpp						\
 	
 SRC	= $(addprefix $(SRCS_DIR),$(SRCS))
 
