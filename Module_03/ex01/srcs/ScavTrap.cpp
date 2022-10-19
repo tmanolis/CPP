@@ -80,5 +80,6 @@ void	ScavTrap::attack(const std::string &target)
 
 void	ScavTrap::guardGate()
 {
-	std::cout << "Est ce que tu as la ref des claptrap ou pas tu pues" << std::endl;
+	std::cout << std::endl << YELLOW << "Est ce que tu as la ref des claptrap ou pas tu pues ? ";
+	std::cout << "Gatekeeper mode is on btw chacal" << RESET << std::endl << std::endl;
 }

@@ -12,6 +12,7 @@ int	main(void)
 	Josiane.takeDamage(8);
 	std::cout << "Josiane HitPoints level : " << Josiane.getHitPoints() << std::endl;
 	std::cout << "Josiane Energy : " << Josiane.getEnergyPoints() << std::endl << std::endl;
+	Josiane.guardGate();
 	Josiane.beRepaired(5);
 	std::cout << "Josiane HitPoints level : " << Josiane.getHitPoints() << std::endl;
 	std::cout << "Josiane Energy : " << Josiane.getEnergyPoints() << std::endl << std::endl;
@@ -20,6 +21,7 @@ int	main(void)
 	std::cout << "HitPoints level : " << Unknown.getHitPoints() << std::endl;
 	std::cout << "Energy : " << Unknown.getEnergyPoints() << std::endl << std::endl;
 	Unknown.beRepaired(12);
+
 
 	std::cout << std::endl;
 	Jackie.attack("Omar");
