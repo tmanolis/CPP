@@ -115,6 +115,8 @@ Fixed	Fixed::operator-(Fixed const &rhs) const
 
 Fixed	Fixed::operator*(Fixed const &rhs) const
 {
+	if (rhs.toFloat() == 0)
+		return Fixed(this->toFloat());
 	return Fixed(this->toFloat() * rhs.toFloat());
 }
 
