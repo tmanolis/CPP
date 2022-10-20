@@ -10,13 +10,13 @@ ClapTrap::ClapTrap() : _Name("THE GIRL HAS NO NAME"), _HitPoints(10), _EnergyPoi
 
 ClapTrap::ClapTrap(ClapTrap const &src)
 {
-	std::cout << "ClapTrap Copy constructor called : " << this->_Name << " is copied" << std::endl;
+	std::cout << "Copy constructor called : " << this->_Name << " is copied" << std::endl;
 	*this = src;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "ClapTrap Destructor called for " << this->_Name << std::endl;
+	std::cout << "Destructor called for " << this->_Name << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string const name) : _Name(name), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
@@ -28,7 +28,7 @@ ClapTrap::ClapTrap(std::string const name) : _Name(name), _HitPoints(10), _Energ
 
 ClapTrap & ClapTrap::operator=(ClapTrap const &rhs)
 {
-	std::cout << "ClapTrap Copy assignment operator called" << std::endl;
+	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &rhs)
 	{
 		this->_Name = rhs.getName();
@@ -86,10 +86,17 @@ void	ClapTrap::attack(const std::string &target)
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
+	int is_overflow = amount;
+
 	if (this->_HitPoints == 0)
 	{
 		std::cout << "Clap Trap " << CYAN << this->_Name << RESET;
 		std::cout << " can't take more damages cuz is already dead 💀" << std::endl;
+		return ;
+	}
+	if (is_overflow < 0)
+	{
+		std::cout << "Such a noob... negative damages dafuqqqqq" << std::endl;
 		return ;
 	}
 	std::cout << "Clap Trap " << CYAN << this->_Name << RESET;
@@ -107,10 +114,17 @@ void	ClapTrap::takeDamage(unsigned int amount)
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
+	int is_overflow = amount;
+
 	if (this->_HitPoints == 0)
 	{
 		std::cout << "Clap Trap " << CYAN << this->_Name << RESET;
 		std::cout << " can't repair itself cuz is dead 💀" << std::endl;
+		return ;
+	}
+	if (is_overflow < 0)
+	{
+		std::cout << "Are you trying to kill me mate ?" << std::endl;
 		return ;
 	}
 	if (this->_EnergyPoints > 1)

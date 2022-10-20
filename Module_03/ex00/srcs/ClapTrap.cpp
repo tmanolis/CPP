@@ -86,10 +86,17 @@ void	ClapTrap::attack(const std::string &target)
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
+	int is_overflow = amount;
+
 	if (this->_HitPoints == 0)
 	{
 		std::cout << "Clap Trap " << CYAN << this->_Name << RESET;
 		std::cout << " can't take more damages cuz is already dead 💀" << std::endl;
+		return ;
+	}
+	if (is_overflow < 0)
+	{
+		std::cout << "Such a noob... negative damages dafuqqqqq" << std::endl;
 		return ;
 	}
 	std::cout << "Clap Trap " << CYAN << this->_Name << RESET;
@@ -107,10 +114,17 @@ void	ClapTrap::takeDamage(unsigned int amount)
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
+	int is_overflow = amount;
+
 	if (this->_HitPoints == 0)
 	{
 		std::cout << "Clap Trap " << CYAN << this->_Name << RESET;
 		std::cout << " can't repair itself cuz is dead 💀" << std::endl;
+		return ;
+	}
+	if (is_overflow < 0)
+	{
+		std::cout << "Are you trying to kill me mate ?" << std::endl;
 		return ;
 	}
 	if (this->_EnergyPoints > 1)
