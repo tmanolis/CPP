@@ -3,7 +3,7 @@
 
 /* Constructors & Destructor */
 
-ClapTrap::ClapTrap() : _Name("THE GIRL HAS NO NAME"), _HitPoints(10), _EnergyPoints(10), _AttackDamage(10)
+ClapTrap::ClapTrap() : _Name("THE GIRL HAS NO NAME"), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
 {
 	std::cout << "Default Constructor called : ClapTrap " << this->_Name << " created" << std::endl;
 }
@@ -19,7 +19,7 @@ ClapTrap::~ClapTrap()
 	std::cout << "Destructor called for " << this->_Name << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string const name) : _Name(name), _HitPoints(10), _EnergyPoints(10), _AttackDamage(10)
+ClapTrap::ClapTrap(std::string const name) : _Name(name), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
 {
 	std::cout << "Parametric Constructor called : ClapTrap " << this->_Name << " created" << std::endl;
 }
