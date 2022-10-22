@@ -13,7 +13,7 @@ class Dog : public Animal
 	public:
 		Dog();						// default constructor
 		Dog(Dog const &src);		// copy constructor
-		~Dog();						// destructor
+		virtual ~Dog();				// destructor
 
 		Dog & operator=(Dog const &rhs); // assignement operator overload
 

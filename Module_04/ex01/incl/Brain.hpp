@@ -11,12 +11,13 @@ class Brain
 	public:
 		Brain();						// Default contrusctor
 		Brain(Brain const &src);		// Copy contrusctor
-		virtual ~Brain();				// Destructor contrusctor
+		~Brain();	// virtual?				// Destructor contrusctor
 
 		Brain & operator=(Brain const &rhs); 	//Assignment operator overload 
 
 		// ACCESSORS
-		std::string *getType() const;
+		std::string const	*getIdeas() const;
+		void				setIdea(size_t index, std::string arg);
 };
 
 #endif

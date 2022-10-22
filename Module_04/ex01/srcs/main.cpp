@@ -14,33 +14,40 @@
  */
 int main()
 {
-	const Animal* meta = new Animal();
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
 	
 	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); // will output the cat sound!
-	j->makeSound(); // will output the dog sound!
-	meta->makeSound(); // will output basic sound of Class Animal
 
-	delete meta;
-	delete j;
+	delete j;//should not create a leak
 	delete i;
 
-	std::cout << std::endl;
+	std::cout << std::endl << std::endl;
+	std::cout << " # --------------- Let's try and deep copy!  ----------------- # " << std::endl;
 	
-	// More Test than in the subject
-	const WrongAnimal*	BadAnimal = new WrongCat();
-	const WrongCat*		BadCat = new WrongCat();
+	Cat origin;
+	origin.fillBrain(0, "good idea");
+	std::cout << "Origin Brain Idea : ";
+	origin.printBrain();
+	std::cout << " # ~~~~~~~~~~~~~~~~~~~~~~ # " << std::endl;
+	Cat copy(origin);
+	std::cout << "Copy Brain Idea : ";
+	copy.printBrain();
+	std::cout << " # ~~~~~~~~~~~~~~~~~~~~~~ # " << std::endl;
+	Cat assign;
+	std::cout << " # ~~~~~~~~~~~~~~~~~~~~~~ # " << std::endl;
+	assign = origin;
+	std::cout << "Assign Brain Idea : ";
+	assign.printBrain();
+	std::cout << " # ~~~~~~~~~~~~~~~~~~~~~~ # " << std::endl;
 	
-	std::cout << std::endl << BadAnimal->getType() << " " << std::endl;
-	std::cout << BadCat->getType() << " " << std::endl;
-	BadAnimal->makeSound(); // will output WrongAnimal Sound
-	BadCat->makeSound(); // will output WrongCat Sound
 
-	delete BadAnimal;
-	delete BadCat;
+	Cat *first = new Cat();
+	Cat *second = new Cat(*first);
+
+	delete first;
+	delete second;
 
 	return (0);
 }

@@ -20,7 +20,7 @@ OBJ_DIR = objs/
 #			FLAGS COMPILATION			#
 #########################################
 CFLAGS = -Wall -Werror -Wextra -std=c++98 -MMD -MP
-# CFLAGS += -fsanitize=address  -Wno-unused
+# CFLAGS += -fsanitize=address
 IFLAGS := -I incl/
 
 #########################################
