@@ -8,8 +8,8 @@ class WrongCat : public WrongAnimal
 {
 	public:
 		WrongCat();						// default constructor
-		WrongCat(WrongCat const &src);		// copy constructor
-		~WrongCat();						// destructor
+		WrongCat(WrongCat const &src);	// copy constructor
+		virtual ~WrongCat();			// destructor
 
 		WrongCat & operator=(WrongCat const &rhs); // assignement operator overload
 
