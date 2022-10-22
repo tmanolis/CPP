@@ -13,10 +13,6 @@
  * https://www.geeksforgeeks.org/virtual-destructor/
  */
 
-// reate and fill an array of Animal objects. Half of it will
-// be Dog objects and the other half will be Cat objects. At the end of your program
-// execution, loop over this array and delete every Animal. You must delete directly dogs
-// and cats as Animals. The appropriate destructors must be called in the expected order.
 int main()
 {
 	std::cout << " # --------------- Mandatory  ----------------- # " << std::endl;
@@ -32,11 +28,11 @@ int main()
 		std::cout << std::endl << std::endl;
 	}
 
-	std::cout << "Should sound like a cat : ";
-	AnimalArray[1]->makeSound();
-	std::cout << "Should sound like a dog : ";
-	AnimalArray[0]->makeSound();
-	std::cout << std::endl << std::endl;
+	for (int i = 0; i < 4; i++)
+	{
+		AnimalArray[i]->makeSound();
+		std::cout << std::endl;
+	}
 
 	for (int i = 0; i < nb; i++)
 		delete AnimalArray[i];
