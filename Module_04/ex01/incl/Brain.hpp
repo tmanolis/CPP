@@ -11,7 +11,7 @@ class Brain
 	public:
 		Brain();						// Default contrusctor
 		Brain(Brain const &src);		// Copy contrusctor
-		~Brain();	// virtual?				// Destructor contrusctor
+		~Brain();						// Destructor contrusctor
 
 		Brain & operator=(Brain const &rhs); 	//Assignment operator overload 
 

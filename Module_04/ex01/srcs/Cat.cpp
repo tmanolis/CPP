@@ -24,6 +24,12 @@ Cat::Cat(Cat const &src) : Animal(src)
 	this->_Brain = new Brain(*src.getBrain());
 }
 
+/**
+ * @brief What happened when delete is call on _Brain ?
+ * When delete is used to deallocate memory for a C++ class object, 
+ * the object's destructor is called before the object's memory is 
+ * deallocated (if the object has a destructor).
+ */
 Cat::~Cat()
 {
 	std::cout << "[Cat] Destructor called" << std::endl;
@@ -58,14 +64,14 @@ void	Cat::makeSound() const
 	std::cout << this->_Type << " is making MIAOOOOOOOOOOWWWWWWW" << std::endl;
 }
 
-void Cat::fillBrain(size_t index, std::string str)
-{
-	this->_Brain->setIdea(index, str);
-}
+// void Cat::fillBrain(size_t index, std::string str)
+// {
+// 	this->_Brain->setIdea(index, str);
+// }
 
-void	Cat::printBrain()
-{
-	std::string const *BrainIdeas = this->_Brain->getIdeas();
+// void	Cat::printBrain()
+// {
+// 	std::string const *BrainIdeas = this->_Brain->getIdeas();
 	
-	std::cout << "Index 0 : " << BrainIdeas[0] << std::endl;
-}
+// 	std::cout << "Index 0 : " << BrainIdeas[0] << std::endl;
+// }

@@ -17,6 +17,9 @@ class Dog : public Animal
 
 		Dog & operator=(Dog const &rhs); // assignement operator overload
 
+		// Accessors
+		Brain * getBrain() const;
+
 		// Public Member Functions
 		virtual void	makeSound() const;
 };

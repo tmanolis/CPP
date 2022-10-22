@@ -17,13 +17,12 @@ class Cat : public Animal
 
 		Cat & operator=(Cat const &rhs); // assignement operator overload
 
-		// ACCESSORS
+		// Accessors
 		Brain		*getBrain() const;
 
 		// Public Member Functions
 		virtual void	makeSound() const;
-		void			fillBrain(size_t index, std::string str);
-		void			printBrain();
+
 };
 
 #endif
