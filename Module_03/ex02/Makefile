@@ -34,6 +34,7 @@ INC_PATH = ./incl/FragTrap.hpp
 SRCS = main.cpp 						\
 	ClapTrap.cpp						\
 	FragTrap.cpp						\
+	ScavTrap.cpp						\
 	
 SRC	= $(addprefix $(SRCS_DIR),$(SRCS))
 
