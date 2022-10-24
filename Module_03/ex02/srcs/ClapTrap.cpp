@@ -24,6 +24,12 @@ ClapTrap::ClapTrap(std::string const name) : _Name(name), _HitPoints(10), _Energ
 	std::cout << "Parametric Constructor called : ClapTrap " << this->_Name << " created" << std::endl;
 }
 
+ClapTrap::ClapTrap(std::string const name, unsigned int hit, unsigned int energy, unsigned int attackDam) :
+_Name(name), _HitPoints(hit), _EnergyPoints(energy), _AttackDamage(attackDam)
+{
+	std::cout << "Parametric Constructor called : ClapTrap " << this->_Name << " created" << std::endl;
+}
+
 /* Operator Overload */
 
 ClapTrap & ClapTrap::operator=(ClapTrap const &rhs)
