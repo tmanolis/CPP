@@ -10,7 +10,7 @@ Dog::Dog() : Animal("Dog")
 
 /**
  * @brief Copy Constructor : Deep VS Shallow Copy
- * When memory is alloDoged, like in the Class for brain, we need to create a Deep Copy
+ * When memory is allocated, like in the Class for brain, we need to create a Deep Copy
  * to avoid to point on the same memory address.
  * 
  * Usefull links : 
