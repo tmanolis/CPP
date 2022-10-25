@@ -4,6 +4,8 @@
 # include <iostream>
 # include "colors.hpp"
 
+class Form; // Can not <# include "Form.hpp"> because "bureaucrate.hpp" is already included in "form.hpp"
+
 class Bureaucrat
 {
 	private:
@@ -26,6 +28,7 @@ class Bureaucrat
 		// Public Member Functions
 		void	promote();
 		void	demote();
+		void	signForm(Form &form) const;
 
 		// Exceptions (Nested Class)
 		class GradeTooHighException : public std::exception

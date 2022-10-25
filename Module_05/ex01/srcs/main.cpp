@@ -1,60 +1,72 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int	main(void)
 {
-	std::cout << std::endl << BWHT << "============ Test Too Low Grade to construct ============" << RESET << std::endl;
+
+	std::cout << std::endl << BWHT << "============ [Form 📝] Test Grade to Construct  ============" << RESET << std::endl;
 	try 
 	{
-		Bureaucrat Kevin("Kevin", 160);
+		Form	Boring("Boring", 160, 1); // WRONG : SignGrade to high
 	}
-	catch (std::exception &e)		// Could specify what kind of exception to catch, ex : Bureaucrat::GradeTooLowException& e
+	catch (std::exception &e)
 	{
 		  std::cout << RED << e.what() << RESET << std::endl;
 	}
 
-	std::cout << std::endl << BWHT << "\n============ Test Too High Grade to construct ============" << RESET << std::endl;
 	try 
 	{
-		Bureaucrat Dwight("Dwight", 0);
+		Form	Boring("Boring", 2, -8); // WRONG : ExecGrade to low
 	}
-	catch (std::exception &e)		// Could specify what kind of exception to catch, ex : Bureaucrat::GradeTooHighException& e
+	catch (std::exception &e)
 	{
-		std::cout << RED << e.what() << RESET << std::endl;
+		  std::cout << RED << e.what() << RESET << std::endl;
 	}
 
-	std::cout << std::endl << BWHT << "============ Basic Test  ============" << RESET << std::endl;
+	try 
+	{
+		Form	Boring("Boring", 200, 0); // WRONG : Both grade are wrong
+	}
+	catch (std::exception &e)
+	{
+		  std::cout << RED << e.what() << RESET << std::endl;
+	}
+
+	try 
+	{
+		Form	Boring("Boring", 2, 150); // OK
+		std::cout << Boring << std::endl;
+
+	}
+	catch (std::exception &e)
+	{
+		  std::cout << RED << e.what() << RESET << std::endl;
+	}
+
+	std::cout << std::endl << BWHT << "============ [Bureaucrat 💼 & Form 📝] Basic Test  ============" << RESET << std::endl;
 	try 
 	{
 		Bureaucrat	Pam("Pam", 70);
 		std::cout << Pam << std::endl;
-		Pam.promote();
+		Form	Boring("Boring", 70, 150); 
+		std::cout << Boring << std::endl;
+		Pam.signForm(Boring);
+		std::cout << Boring << std::endl;
+		Pam.signForm(Boring);
+	}
+	catch (std::exception &e)
+	{
+		  std::cout << BRED << e.what() << RESET << std::endl;
+	}
+
+	std::cout << std::endl;
+	try 
+	{
+		Bureaucrat	Pam("Pam", 70);
 		std::cout << Pam << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		  std::cout << BRED << e.what() << RESET << std::endl;
-	}
-
-	std::cout << std::endl << BWHT << "============ Test Demote / Promote  ============" << RESET << std::endl;
-	Bureaucrat	Random;
-	
-	std::cout << Random << std::endl;
-	try 
-	{
-		std::cout << BWHT << "Trying to demote Jean-Jacques" << RESET << std::endl;
-		Random.demote();					// Asap my try "returns" a throw it goes to the 'Catch block'
-		std::cout << Random << std::endl;	// This line won't be executed 
-	}
-	catch (std::exception &e)
-	{
-		  std::cout << BRED << e.what() << RESET << std::endl;
-	}
-
-	try 
-	{
-		std::cout << BWHT << "Trying to promote Jean-Jacques" << RESET << std::endl;
-		Random.promote();
-		std::cout << Random << std::endl;
+		Form	Relou("Relou", 69, 150); 
+		std::cout << Relou << std::endl;
+		Pam.signForm(Relou);
 	}
 	catch (std::exception &e)
 	{

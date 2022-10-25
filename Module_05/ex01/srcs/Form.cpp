@@ -20,7 +20,6 @@ Form::Form(Form const &src) :
 	_Name(src._Name), _IsSigned(src._IsSigned), _SignGrade(src._SignGrade), _ExecGrade(src._ExecGrade)
 {
 	std::cout << "[Form] Copy Constructor called" << std::endl;
-	// *this = src; ???
 }
 
 Form::~Form()
@@ -28,8 +27,8 @@ Form::~Form()
 	std::cout << "[Form] Destructor called" << std::endl;
 }
 
-Form::Form(std::string const name, bool isSigned, int const signGrade, int const execGrade) : 
-	_Name(name), _IsSigned(isSigned), _SignGrade(signGrade), _ExecGrade(execGrade)
+Form::Form(std::string const name, int const signGrade, int const execGrade) : 
+	_Name(name), _IsSigned(false), _SignGrade(signGrade), _ExecGrade(execGrade)
 {
 	std::cout << "[Form] Parametric Constructor called" << std::endl;
 	checkGrade(this->_SignGrade);
@@ -69,6 +68,13 @@ int	Form::getExecGrade() const
 
 /* Public Member Functions */
 
+void	Form::beSigned(Bureaucrat const &bureaucrat)
+{
+	if (bureaucrat.getGrade() <= this->_SignGrade)
+		this->_IsSigned = true;
+	else
+		throw Form::GradeTooLowException();
+}
 
 /* Exceptions */
 
@@ -86,11 +92,11 @@ const char * Form::GradeTooLowException::what() const throw()
 
 std::ostream & operator<<(std::ostream &o, Form const &src)
 {
-	o << UYEL << "Form" + src.getName() << RESET << std::endl;
+	o << UYEL << "Form " + src.getName() << RESET << std::endl;
 	o << "• Grade required to sign : " << src.getSignGrade() << std::endl;
 	o << "• Grade required to execute : " << src.getExecGrade() << std::endl;
 	// Ternary : has to be entre parenthese to work with stream
-	o << "• Status : " << ((src.getIsSigned() == true) ? "signed." : "not signed.") << std::endl; 
+	o << "• Status : " << ((src.getIsSigned() == true) ? "signed." : "not signed."); 
 
 	return (o);
 }

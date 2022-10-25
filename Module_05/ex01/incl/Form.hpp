@@ -20,7 +20,7 @@ class Form
 
 		Form & operator=(Form const &rhs); 	// assignement operator overload
 
-		Form(std::string const name, bool isSigned, int const signGrade, int const execGrade);	// Parametric Constructor
+		Form(std::string const name, int const signGrade, int const execGrade);	// Parametric Constructor
 
 		// Accessors
 		std::string	getName() const;
@@ -29,7 +29,7 @@ class Form
 		int			getExecGrade() const;
 
 		// Public Member Functions
-		// void	beSigned(Bureaucrat const &bureaucrat);
+		void	beSigned(Bureaucrat const &bureaucrat);
 
 		// Exceptions (Nested Class)
 		class GradeTooHighException : public std::exception

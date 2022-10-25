@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 /* Constructors & Destructor */
 
@@ -65,6 +66,25 @@ void	Bureaucrat::demote()
 	else
 		_Grade++;
 		
+}
+
+void	Bureaucrat::signForm(Form &form) const
+{
+	if (form.getIsSigned() == false)
+	{
+		try
+		{
+			form.beSigned(*this);
+			std::cout << GREEN << this->_Name << " signed Form " + form.getName() << RESET << std::endl;
+		} 
+		catch (std::exception& e) 
+		{
+			std::cout << RED << this->_Name << " couldn't signed Form " + form.getName();
+			std::cout << " because " << e.what() << RESET << std::endl;
+		}
+	}
+	else
+		std::cout << RED << "Form " + this->_Name << " is already signed." << RESET << std::endl;
 }
 
 /* Exceptions */
