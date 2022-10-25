@@ -2,6 +2,7 @@
 # define BUREAUCRAT_HPP
 
 # include <iostream>
+# include "colors.hpp"
 
 class Bureaucrat
 {
@@ -12,59 +13,37 @@ class Bureaucrat
 	public:
 		Bureaucrat();							// Default Constructor
 		Bureaucrat(Bureaucrat const &src); 		// Copy Constructor
-		~Bureaucrat();							// Destructor
+		 ~Bureaucrat();							// Destructor
 
 		Bureaucrat & operator=(Bureaucrat const &rhs); 	// assignement operator overload
+
+		Bureaucrat(std::string const name, int grade);	// Parametric Constructor
 
 		// Accessors
 		std::string	getName() const;
 		int			getGrade() const;
 
 		// Public Member Functions
+		void	promote();
+		void	demote();
 
+		// Exceptions (Nested Class)
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				virtual const char	*what() const throw();
+		};
 
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				virtual const char	*what() const throw();
+		};
+		
 };
 
-/* Constructors & Destructor */
+std::ostream & operator<<(std::ostream &o, Bureaucrat const &src);
 
-Bureaucrat::Bureaucrat()
-{
-	std::cout << "[Bureaucrat] Default Constructor called" << std::endl;
-}
-
-Bureaucrat::Bureaucrat(Bureaucrat const &src)
-{
-	std::cout << "[Bureaucrat] Copy Constructor called" << std::endl;
-	*this = src;
-}
-
-Bureaucrat::~Bureaucrat()
-{
-	std::cout << "[Bureaucrat] Destructor called" << std::endl;
-}
-
-/* Operator Overload */
-
-Bureaucrat & Bureaucrat::operator=(Bureaucrat const &rhs)
-{
-	if (this != &rhs)
-	{
-		this->_Name = rhs.getName();
-		this->_Grade = rhs.getGrade();
-	}
-	return (*this);
-}
-
-/* Accessors */
-std::string	Bureaucrat::getName() const
-{
-	return (this->_Name);
-}
-
-int	Bureaucrat::getGrade() const
-{
-	return (this->_Grade);
-}
 
 
 #endif
