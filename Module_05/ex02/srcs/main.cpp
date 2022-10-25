@@ -1,47 +1,73 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int	main(void)
 {
+	// std::cout << "\n------------------ Robotomy Request Forms ------------------" << std::endl;
+	// Form*			RobotomyForm = new RobotomyRequestForm("Robotomy");
+	
+	// std::cout << "\n------------------ Presidential Pardon Forms ------------------" << std::endl;
+	// Form*			PresidentialForm = new PresidentialPardonForm("Presidential");
 
-	// std::cout << std::endl << BWHT << "============ [Form 📝] Test Grade to Construct  ============" << RESET << std::endl;
-	// try 
-	// {
-	// 	Form	Boring("Boring", 160, 1); // WRONG : SignGrade to high
+	std::cout << "\n================== 🌳 Test on Shrubbery Creation Form 🌳 ====================" << std::endl;
+	std::cout << "------------------ Bureaucrats ------------------" << std::endl;
+	Bureaucrat	gardener("gardener", 138);
+	std::cout << gardener << std::endl;
+	
+	std::cout << "------------------ Shrubbery Creation Forms ------------------" << std::endl;
+	ShrubberyCreationForm	ShrubberyForm("Shrubbery");
+	std::cout << ShrubberyForm << std::endl;
+
+	std::cout << "\n------------------ Execution without Signature ------------------" << std::endl;
+	gardener.executeForm(ShrubberyForm);
+
+	std::cout << "------------------ Signature ------------------" << std::endl;
+	gardener.signForm(ShrubberyForm);
+
+	std::cout << "------------------ Execution without Grade ------------------" << std::endl;
+	gardener.executeForm(ShrubberyForm);
+
+	std::cout << "------------------ Working Execution ------------------" << std::endl;
+	gardener.promote();
+	gardener.executeForm(ShrubberyForm);
+	
+	
+
+	// std::cout << std::endl << "\n================== Test on Shrubbery Creation Form ====================" << std::endl;
+	// std::cout << "------------------ Execution without Signature ------------------" << std::endl;
+	// try {
+	// 	s1->execute(k);
 	// }
-	// catch (std::exception &e)
+	// catch (AForm::RequirementException e)
 	// {
-	// 	  std::cout << RED << e.what() << RESET << std::endl;
+	// 	e.printErr();
 	// }
 
-	// try 
-	// {
-	// 	Form	Boring("Boring", 2, -8); // WRONG : ExecGrade to low
+	// std::cout << "\n------------------ Signature ------------------" << std::endl;
+	// try {
+	// 	s1->beSigned(g);
 	// }
-	// catch (std::exception &e)
+	// catch (AForm::GradeTooLowException e)
 	// {
-	// 	  std::cout << RED << e.what() << RESET << std::endl;
+	// 	e.printErr();
 	// }
+	// std::cout << std::endl << *s1 << std::endl;
+	// s1->beSigned(k);
+	// std::cout << *s1;
 
-	// try 
-	// {
-	// 	Form	Boring("Boring", 200, 0); // WRONG : Both grade are wrong
+	// std::cout << "\n------------------ Execution with Signature ------------------" << std::endl;
+	// try {
+	// 	s1->execute(g);
 	// }
-	// catch (std::exception &e)
+	// catch (AForm::RequirementException e)
 	// {
-	// 	  std::cout << RED << e.what() << RESET << std::endl;
+	// 	e.printErr();
 	// }
+	// s1->execute(k);
+	// delete RobotomyForm;
+	// delete PresidentialForm;
 
-	// try 
-	// {
-	// 	Form	Boring("Boring", 2, 150); // OK
-	// 	std::cout << Boring << std::endl;
-
-	// }
-	// catch (std::exception &e)
-	// {
-	// 	  std::cout << RED << e.what() << RESET << std::endl;
-	// }
 
 	// std::cout << std::endl << BWHT << "============ [Bureaucrat 💼 & Form 📝] Basic Test  ============" << RESET << std::endl;
 	// try 
