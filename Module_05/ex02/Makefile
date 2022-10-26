@@ -34,6 +34,7 @@ INC_PATH = ./incl/Bureaucrat.hpp
 SRCS = main.cpp 						\
 	Bureaucrat.cpp						\
 	Form.cpp							\
+	RobotomyRequestForm.cpp				\
 	ShrubberyCreationForm.cpp			\
 	
 SRC	= $(addprefix $(SRCS_DIR),$(SRCS))
