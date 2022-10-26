@@ -2,15 +2,10 @@
 #include "Form.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int	main(void)
 {
-	// std::cout << "\n------------------ Robotomy Request Forms ------------------" << std::endl;
-	// Form*			RobotomyForm = new RobotomyRequestForm("Robotomy");
-	
-	// std::cout << "\n------------------ Presidential Pardon Forms ------------------" << std::endl;
-	// Form*			PresidentialForm = new PresidentialPardonForm("Presidential");
-
 	std::cout << "\n================== 🌳 Test on Shrubbery Creation Form 🌳 ====================" << std::endl;
 	std::cout << "------------------ Bureaucrats ------------------" << std::endl;
 	Bureaucrat	gardener("gardener", 138);
@@ -50,7 +45,22 @@ int	main(void)
 	Jack.executeForm(RobotForm);
 
 
+	std::cout << "\n================== Test on Presidential Pardon Form ====================" << std::endl;
+	std::cout << "------------------ Bureaucrats ------------------" << std::endl;
+	Bureaucrat	Xavier("Xavier", 1);
+	std::cout << Xavier << std::endl;
 	
+	std::cout << "------------------ Robotomy Creation Forms ------------------" << std::endl;
+	PresidentialPardonForm	PresidentForm("Vincent");
+	std::cout << PresidentForm << std::endl;
 
+	std::cout << "------------------ Signature ------------------" << std::endl;
+	Xavier.signForm(PresidentForm);
+
+	std::cout << "------------------ Working Execution ------------------" << std::endl;
+	Xavier.executeForm(PresidentForm);	
+
+
+	std::cout << std::endl;
 	return (0);
 }
