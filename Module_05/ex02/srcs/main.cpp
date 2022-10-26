@@ -45,12 +45,12 @@ int	main(void)
 	Jack.executeForm(RobotForm);
 
 
-	std::cout << "\n================== Test on Presidential Pardon Form ====================" << std::endl;
+	std::cout << "\n================== 👨‍💼 Test on Presidential Pardon Form 👨‍💼 ====================" << std::endl;
 	std::cout << "------------------ Bureaucrats ------------------" << std::endl;
 	Bureaucrat	Xavier("Xavier", 1);
 	std::cout << Xavier << std::endl;
 	
-	std::cout << "------------------ Robotomy Creation Forms ------------------" << std::endl;
+	std::cout << "------------------ Presidental Creation Forms ------------------" << std::endl;
 	PresidentialPardonForm	PresidentForm("Vincent");
 	std::cout << PresidentForm << std::endl;
 
