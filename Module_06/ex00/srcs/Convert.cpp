@@ -22,9 +22,9 @@ Convert::Convert(char const *str) : _isValidInt(true), _isValidChar(true), _isPr
 {
 	std::cout << "[Convert] Parametric Constructor called" << std::endl;
 
-	// Find value type
-	if (isChar(str) == false && isInt(str) == false
-		&& isFloat(str) == false && isDouble(str) == false)
+	// Find value type (order is important)
+	if (isInt(str) == false && isFloat(str) == false 
+		&& isDouble(str) == false && isChar(str) == false)
 			this->_type = UNVALID;
 	// Cast value into other types based on the type found
 	this->castIntoTypes();
@@ -72,6 +72,7 @@ bool	Convert::isInt(char const *str)
 	if (*endptr || value > INT_MAX || value < INT_MIN)
 		return (false);
 	this->_type = INT;
+	std::cout << "int value (long) : " << value << std::endl;
 	this->_int = static_cast<int>(value); // cast because value was a long (to check INT_MIN & INT_MAX)
 	return (true);
 }
@@ -174,7 +175,7 @@ void	Convert::display() const
 	else if (this->_isPrintableChar == false)
 		std::cout << "Non displayable" << std::endl;
 	else
-		std::cout << _char << std::endl;
+		std::cout << "'" << _char << "'" << std::endl;
 	
 	// INT
 	std::cout << "int: ";
