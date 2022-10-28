@@ -33,7 +33,7 @@ class Convert
 	public:
 		Convert();									// Default Constructor
 		Convert(Convert const &src); 				// Copy Constructor
-		 ~Convert();								// Destructor
+		~Convert();									// Destructor
 
 		Convert & operator=(Convert const &rhs); 	// assignement operator overload
 
