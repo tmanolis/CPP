@@ -8,27 +8,23 @@
 int	main(void)
 {
 	std::cout << BWHT<< "================= Int Array ===============" << RESET << std::endl;
-    
 	int intArray[5] = {0, 1, 2, 3, 4};
 	iter<int>(intArray, 5, print);		// Explicite template instanciation
+	iter(intArray, 5, increment);		// Implicite template instanciation
+	std::cout << "/* After incrementation */" << std::endl;
+	iter(intArray, 5, print);
 	
+	std::cout << BWHT<< "\n================= Float Array ===============" << RESET << std::endl;
+	float floatArray[3] = {0.42f, 1.42f, 2.42f};
+	iter<float>(floatArray, 3, print);		// Explicite template instanciation
+	iter(floatArray, 3, increment);		// Implicite template instanciation
+	std::cout << "/* After incrementation */" << std::endl;
+	iter(floatArray, 3, print);
+
+	std::cout << BWHT<< "\n================= String Array ===============" << RESET << std::endl;
+	std::string	strArray[3] = {"Salut", "les", "nazes"};
+	iter<std::string>(strArray, 3, print);		// Explicite template instanciation
 	
 
-
-	// ::swap( a, b );	// Implicite template instanciation
-	// std::cout << "a = " << a << ", b = " << b << std::endl;
-	// std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;	// Implicite template instanciation
-	// std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;	// Implicite template instanciation
-	
-	// std::string c = "chaine1";
-	// std::string d = "chaine2";
-
-	// ::swap(c, d); // Implicite template instanciation
-	// std::cout << "c = " << c << ", d = " << d << std::endl;
-	// std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
-	// std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
-
-
-	
 	return (0);
 }
