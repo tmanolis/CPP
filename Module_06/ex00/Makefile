@@ -26,7 +26,7 @@ IFLAGS := -I incl/
 #########################################
 #			FILES PATH					#
 #########################################
-INC_PATH = ./incl/Bureaucrat.hpp
+INC_PATH = ./incl/Convert.hpp
 
 #########################################
 #			SOURCES	FILES				#
