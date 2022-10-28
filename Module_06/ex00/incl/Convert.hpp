@@ -19,10 +19,10 @@ typedef enum e_type
 class Convert
 {
 	private:
-		char	_char;
 		int		_int;
 		float	_float;
-		double	_double;			
+		double	_double;
+		char	_char;		
 		t_type	_type;
 		
 		// Display Flags
@@ -42,10 +42,10 @@ class Convert
 
 		// Public Member Functions
 		//	--- Conversion Functions ---	//
-		bool	isChar(char const *str);
 		bool	isInt(char const *str);
 		bool	isFloat(char const *str);
 		bool	isDouble(char const *str);
+		bool	isChar(char const *str);
 		//	--- Cast Function ---	//
 		void	castIntoTypes();
 		//	--- Display Function ---	//

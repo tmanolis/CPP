@@ -22,7 +22,7 @@ Convert::Convert(char const *str) : _isValidInt(true), _isValidChar(true), _isPr
 {
 	std::cout << "[Convert] Parametric Constructor called" << std::endl;
 
-	// Find value type (order is important)
+	// Find value type (order is important : isChar must be in the end)
 	if (isInt(str) == false && isFloat(str) == false 
 		&& isDouble(str) == false && isChar(str) == false)
 			this->_type = UNVALID;
@@ -38,10 +38,10 @@ Convert & Convert::operator=(Convert const &rhs)
 {
 	if (this != &rhs)
 	{
-		this->_char = rhs._char;
 		this->_int = rhs._int;
 		this->_double = rhs._double;
 		this->_float = rhs._float;
+		this->_char = rhs._char;
 		this->_isValidInt = rhs._isValidInt;
 		this->_isValidChar = rhs._isValidChar;
 		this->_isPrintableChar = rhs._isPrintableChar;
@@ -72,7 +72,6 @@ bool	Convert::isInt(char const *str)
 	if (*endptr || value > INT_MAX || value < INT_MIN)
 		return (false);
 	this->_type = INT;
-	std::cout << "int value (long) : " << value << std::endl;
 	this->_int = static_cast<int>(value); // cast because value was a long (to check INT_MIN & INT_MAX)
 	return (true);
 }
@@ -164,6 +163,14 @@ void	Convert::setDisplayFlags()
 	}
 }
 
+/**
+ * @brief about std::fixed and std::setprecision
+ * 
+ * When floatfield is set to fixed, floating-point values are written using fixed-point notation: 
+ * the value is represented with exactly as many digits in the decimal part as specified by the precision field (precision) 
+ * and with no exponent part.
+ * 
+ */
 void	Convert::display() const
 {
 	std::cout << std::fixed << std::setprecision(1);
