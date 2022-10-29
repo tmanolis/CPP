@@ -33,6 +33,16 @@ class Array
 		};
 };
 
+template<typename T>
+std::ostream & operator<<(std::ostream &o, Array<T> const &rhs)
+{
+	for (unsigned int i = 0; i < rhs.size(); i++)
+		o << "[" << i << "] = " << rhs.getArray()[i] << std::endl;
+	
+	return (o);
+}
+
+
 /* Constructors & Destructor */
 
 template<typename T>
@@ -49,7 +59,7 @@ Array<T>::Array(Array<T> const &src)
 	// deep copy
 	this->_array = new T[src._size];
 	this->_size = src._size;
-	for (int i = 0; i < this->_size; i++)
+	for (unsigned int i = 0; i < this->_size; i++)
 		this->_array[i] = src._array[i];
 }
 
