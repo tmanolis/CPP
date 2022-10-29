@@ -2,6 +2,8 @@
 # define DATA_HPP
 
 #include <iostream>
+#include <cctype>
+#include <stdint.h>
 
 // Colors
 # define RESET "\e[0m"
