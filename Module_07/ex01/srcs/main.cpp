@@ -17,7 +17,7 @@ int	main(void)
 	std::cout << BWHT<< "\n================= Float Array ===============" << RESET << std::endl;
 	float floatArray[3] = {0.42f, 1.42f, 2.42f};
 	iter<float>(floatArray, 3, print);		// Explicite template instanciation
-	iter(floatArray, 3, increment);		// Implicite template instanciation
+	iter(floatArray, 3, increment);			// Implicite template instanciation
 	std::cout << "/* After incrementation */" << std::endl;
 	iter(floatArray, 3, print);
 
