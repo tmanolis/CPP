@@ -17,10 +17,14 @@ class Array
 
 		Array(unsigned int n);			// Parametric Constructor
 
-		Array<T> & operator=(Array<T> const &rhs);	// Assignement operator overload
+		// Operators overload
+		Array<T> & operator=(Array<T> const &rhs);
+		T & operator[](unsigned int index);
+
 
 		// Accessors
 		unsigned int	size() const;
+		T				*getArray() const;
 
 		// Exceptions
 		class	IndexOutOfRangeException : public std::exception 
@@ -83,12 +87,27 @@ Array<T> &	Array<T>::operator=(Array<T> const &rhs)
 	return (*this);
 }
 
+template<typename T>
+T & Array<T>::operator[](unsigned int index)
+{
+	if (index >= (this->_size))
+		throw IndexOutOfRangeException();
+	else
+		return (this->_array[index]);
+}
+
 /* Accessors */
 
 template<typename T>
 unsigned int	Array<T>::size() const
 {
 	return (this->_size);
+}
+
+template<typename T>
+T *	Array<T>::getArray() const
+{
+	return (this->_array);
 }
 
 /* Exceptions */
