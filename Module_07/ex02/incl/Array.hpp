@@ -83,6 +83,7 @@ Array<T>::Array(unsigned int n) : _size(n)
 template<typename T>
 Array<T> &	Array<T>::operator=(Array<T> const &rhs)
 {
+	std::cout << "[Array] Assignation Operator Overload called" << std::endl;
 	if (this != &rhs)
 	{
 		if (this->_array)
@@ -91,8 +92,8 @@ Array<T> &	Array<T>::operator=(Array<T> const &rhs)
 		
 		this->_size = rhs.size();
 		
-		for (int i = 0; i < this->_size; ++i)
-			this->_array[i] = rhs[i];
+		for (unsigned int i = 0; i < this->_size; ++i)
+			this->_array[i] = rhs._array[i];
 	}
 	return (*this);
 }

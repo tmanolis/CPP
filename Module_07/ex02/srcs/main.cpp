@@ -87,7 +87,7 @@ int	main(void)
 
 	std::cout << "\n*~~~~~~~~~~~~~~ With Copy ~~~~~~~~~~~~~~*" << RESET << std::endl;
 	Array<std::string>	strCopy(strArray);
-	std::cout << std::endl << UCYN << "Int Copy infos:" << RESET << std::endl;
+	std::cout << std::endl << UCYN << "Str Copy infos:" << RESET << std::endl;
 	std::cout << strCopy;
 	std::cout << "Value at a valid index: [0] = " << strCopy[0] << std::endl;
 	std::cout << "Value at a unvalid index: [5] = ";
@@ -103,10 +103,16 @@ int	main(void)
 	std::cout << UWHT << "\nCheck Deep Copy:" << RESET << std::endl;
 	std::cout << "Change strCopy[2] = boloss <3;" << std::endl;
 	strCopy[2] = "boloss <3";
-	std::cout << std::endl << UCYN << "Str Array infos:" << RESET << std::endl;
+	std::cout << UCYN << "Str Array infos:" << RESET << std::endl;
 	std::cout << strArray;
-	std::cout << UCYN << "Int Copy infos:" << RESET << std::endl;
+	std::cout << UCYN << "Str Copy infos:" << RESET << std::endl;
 	std::cout << strCopy << std::endl;
+
+	std::cout << UWHT << "Check by Assignation:" << RESET << std::endl;
+	Array<std::string>	strtmp;
+	strtmp = strCopy;
+	std::cout << UCYN << "strtmp infos:" << RESET << std::endl;
+	std::cout << strtmp << std::endl;
 
 	return (0);
 }
