@@ -6,7 +6,7 @@ NAME = EasyFind
 #########################################
 #				COMMANDS				#
 #########################################
-CC = c++
+CXX = c++
 MKDIR =	mkdir -p
 RM = rm -rf
 
@@ -19,8 +19,8 @@ OBJ_DIR = objs/
 #########################################
 #			FLAGS COMPILATION			#
 #########################################
-CFLAGS = -Wall -Werror -Wextra -std=c++98 -MMD -MP
-# CFLAGS += -fsanitize=address -Wno-unused
+CXXFLAGS = -Wall -Werror -Wextra -std=c++98 -MMD -MP
+# CXXFLAGS += -fsanitize=address -Wno-unused
 IFLAGS := -I incl/
 
 #########################################
@@ -61,11 +61,11 @@ all:	${NAME}
 
 ${OBJ_DIR}%.o : ${SRCS_DIR}%.cpp
 	@$(MKDIR) $(@D)
-	$(CC) $(CFLAGS) $(IFLAGS) -o $@ -c $< 
+	$(CXX) $(CXXFLAGS) $(IFLAGS) -o $@ -c $< 
 
 $(NAME): $(OBJS)
 	@echo $(CYAN) " - Compiling $@" $(RED)
-	@$(CC) $(CFLAGS) $(OBJS) $(IFLAGS) -o $(NAME)  
+	@$(CXX) $(CXXFLAGS) $(OBJS) $(IFLAGS) -o $(NAME)  
 	@echo $(GREEN) "[OK COMPILED]" $(EOC)
 
 clean:
