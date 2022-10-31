@@ -26,7 +26,6 @@ typename T::const_iterator	easyfind(T const &haystack, int const needle)
 		if (occurence != haystack.end())
 		{
 			std::cout << GREEN << "First occurence of " << needle << " was found. " << RESET << std::endl;
-			std::cout << "Position of this occurence is: " << occurence - haystack.begin() << std::endl;
 		}
 		else
 			throw NoOccurenceException();
