@@ -51,37 +51,18 @@ unsigned int		Span::getRange() const
 /* Public Member Functions */
 void	Span::addNumber(int const number)
 {
-	try
-	{
-		if (this->_span.size() < this->_range)
-			this->_span.push_back(number);
-		else
-			throw SpanFullException();
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << RED << e.what() << RESET << std::endl;
-	}
+	if (this->_span.size() < this->_range)
+		this->_span.push_back(number);
+	else
+		throw SpanFullException();
 }
 
-void	Span::addMaxRange()
+void	Span::addPlageNumber(unsigned int plage)
 {
 	srand(time(NULL));
-	size_t	size = this->_span.size();
-	try
-	{
-		if (size < this->_range)
-		{
-			for (unsigned int i = size; i < this->_range; i++)
-				this->addNumber(rand() % this->_range);	
-		}
-		else
-			throw SpanFullException();
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << RED << e.what() << RESET << std::endl;
-	}
+	
+	for (unsigned int i = 0; i < plage; i++)
+			this->addNumber((rand() % 10000) + 1);	
 }
 
 /**
@@ -108,7 +89,7 @@ unsigned int	Span::shortestSpan() const
 	{
 		unsigned int	diff = *(it + 1) - *it;
 		if (diff < shortest_span)
-			shortest_span = (it + 1) - it;
+			shortest_span = diff;
 		it++;
 	}
 
@@ -131,7 +112,15 @@ unsigned int	Span::longestSpan() const
 
 void			Span::displaySpan() const
 {
+	std::vector<int>::const_iterator	it;
+	std::vector<int>::const_iterator	last = this->_span.end();
 
+	std::cout << UCYN << "Span number:" << RESET << std::endl;
+	for (it = this->_span.begin(); it != last; it++)
+	{
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
 }
 
 /* Exceptions */

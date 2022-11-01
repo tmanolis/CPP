@@ -9,6 +9,7 @@
 # define RED "\e[0;31m"
 # define GREEN "\e[0;32m"
 # define BWHT "\e[1;37m"
+# define UCYN "\e[4;36m"
 
 class Span
 {
@@ -32,7 +33,7 @@ class Span
 
 		// Public member functions
 		void			addNumber(int const number);
-		void			addMaxRange();
+		void			addPlageNumber(unsigned int plage);
 		unsigned int	shortestSpan() const;
 		unsigned int	longestSpan() const;
 		void			displaySpan() const;
