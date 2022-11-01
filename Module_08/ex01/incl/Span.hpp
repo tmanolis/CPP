@@ -2,6 +2,8 @@
 # define SPAN_HPP
 
 # include <iostream>
+# include <climits>
+# include <algorithm>
 # include <vector>
 
 // Colors
