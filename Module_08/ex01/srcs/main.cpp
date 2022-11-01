@@ -61,5 +61,21 @@ int main()
 	std::cout << large.shortestSpan() << std::endl;
 	std::cout << large.longestSpan() << std::endl;
 
+
+	std::cout << BWHT<< "\n================= Add with Iterator Range ===============" << RESET << std::endl;
+	std::vector<int> tmp = sp1.getSpan();
+
+	Span sp2(5);
+
+	try
+	{
+		sp2.insertRange(tmp.begin(), tmp.end());
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED << e.what() << RESET << std::endl;
+	}
+	sp2.displaySpan();
+
 	return (0);
 }

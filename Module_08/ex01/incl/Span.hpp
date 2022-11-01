@@ -36,6 +36,15 @@ class Span
 		// Public member functions
 		void			addNumber(int const number);
 		void			addPlageNumber(unsigned int plage);
+		template <typename T>
+		void			insertRange(T begin, T end)
+		{
+			while (begin != end)
+			{
+				this->addNumber(*begin);
+				begin++;
+			}
+		}
 		unsigned int	shortestSpan() const;
 		unsigned int	longestSpan() const;
 		void			displaySpan() const;
