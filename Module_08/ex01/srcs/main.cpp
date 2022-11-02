@@ -62,8 +62,8 @@ int main()
 	std::cout << large.longestSpan() << std::endl;
 
 
-	std::cout << BWHT<< "\n================= Add with Iterator Range ===============" << RESET << std::endl;
-	std::vector<int> tmp = sp1.getSpan();
+	std::cout << BWHT<< "\n================= Add with Range Iterator ===============" << RESET << std::endl;
+	std::vector<int> tmp = sp.getSpan();
 
 	Span sp2(5);
 

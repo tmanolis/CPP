@@ -65,6 +65,14 @@ void	Span::addPlageNumber(unsigned int plage)
 			this->addNumber((rand() % 10000) + 1);	
 }
 
+void	Span::insertRange(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+	if (this->_span.size() + std::distance(begin, end) > this->_range)
+		throw SpanFullException();
+	
+	this->_span.insert(this->_span.begin(), begin, end);
+}
+
 /**
  * @brief std::sort
  * template <class RandomAccessIterator>  void sort (RandomAccessIterator first, RandomAccessIterator last);
