@@ -29,13 +29,33 @@ std::string	getFileContent(void)
 	return (buffer.str());
 }
 
-int	main(void)
+void	fillBitcoinExchange(std::map<std::string, BitcoinExchange> &map)
 {
-	std::string	fileContent = getFileContent();
-	if (fileContent.empty() == true)
+	std::ifstream		ifs(FILE_PATH);
+	std::stringstream	buffer;
+
+	if (ifs.is_open() == false || ifs.fail() == true)
 	{
 		std::cout << "An error with the data file occured." << std::endl;
-		return (FAILURE);
+		return ;
 	}
+	// getline
 	
+	
+}
+
+
+
+int	main(void)
+{
+	// std::string	fileContent = getFileContent();
+	// if (fileContent.empty() == true)
+	// {
+	// 	std::cout << "An error with the data file occured." << std::endl;
+	// 	return ;
+	// }
+	std::map<std::string, BitcoinExchange>	BitcoinExchange;
+
+	// try and catch
+	fillBitcoinExchange(BitcoinExchange);
 }
