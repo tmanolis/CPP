@@ -16,46 +16,42 @@
  * https://stackoverflow.com/questions/2602013/read-whole-ascii-file-into-c-stdstring
  * @return std::string : file's content OR nothing if errors occurs when the file was maniplated 		
  */
-std::string	getFileContent(void)
-{
-	std::ifstream		ifs(FILE_PATH);
-	std::stringstream	buffer;
-
-	if (ifs.is_open() == false || ifs.fail() == true)
-		return ("");
-	buffer << ifs.rdbuf();
-	ifs.close();
-
-	return (buffer.str());
-}
 
 void	fillBitcoinExchange(std::map<std::string, BitcoinExchange> &map)
 {
+	(void)map;
+
 	std::ifstream		ifs(FILE_PATH);
 	std::stringstream	buffer;
 
 	if (ifs.is_open() == false || ifs.fail() == true)
+		throw std::runtime_error(std::string("Failed to open file ") + FILE_PATH);
+	
+	std::string line;
+	int i = 0;
+	while (std::getline(ifs, line) && i < 4)
 	{
-		std::cout << "An error with the data file occured." << std::endl;
-		return ;
+		// split sur la virgule et mettre dans le map
+		std::cout << line << std::endl;
+		i++;
 	}
-	// getline
 	
-	
+	// close and return
+	ifs.close();
 }
-
-
 
 int	main(void)
 {
-	// std::string	fileContent = getFileContent();
-	// if (fileContent.empty() == true)
-	// {
-	// 	std::cout << "An error with the data file occured." << std::endl;
-	// 	return ;
-	// }
 	std::map<std::string, BitcoinExchange>	BitcoinExchange;
 
-	// try and catch
-	fillBitcoinExchange(BitcoinExchange);
+	try
+	{
+		fillBitcoinExchange(BitcoinExchange);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Error : " << e.what() << std::endl;
+		return (-1);
+	}
+	
 }
