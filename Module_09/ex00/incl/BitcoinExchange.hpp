@@ -15,12 +15,19 @@
 class BitcoinExchange
 {
 	private:
-		// float		_bitcoinRate;
-		std::string	_date;
-	
+		std::string	_Date;
+		float		_BitcoinRate;
+
 	public:
-		BitcoinExchange();
-		~BitcoinExchange();
+		BitcoinExchange();								// Default Constructor
+		BitcoinExchange(BitcoinExchange const &src);	// Copy Constructor
+		~BitcoinExchange();								// Destructor
+
+		BitcoinExchange(std::string date, float rate);	// Parametric Constructor
+
+		// Accessors
+		std::string	getDate() const;
+		float		getBitcoinRate() const;
 
 };
 
