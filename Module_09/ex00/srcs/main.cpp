@@ -2,22 +2,41 @@
 
 # define FILE_PATH "./data.csv"
 
+// BitcoinExchange	&parseData(std::string line)
+void	parseData(std::string line)
+{
+	size_t		delimiter_pos = line.find(',');
+	std::string	date = line.substr(0, delimiter_pos);
+	std::string	value = line.substr(delimiter_pos + 1, std::string::npos);
+	float		rate = atof(value.c_str());	
+ 
+	std::cout << "date : " << date << " rate : " << rate << std::endl;
+	// return (BitcoinExchange	new_element(/*args*/));
+}
 
 /**
- * @brief Read from a file and return its content in a string
+ * @brief Get data from a file, parse file and fill a map container of BitcoinExchange objects.
  * 
  * Used infile stream to manipulate the file :
- * - check if error occured when we try to link the stream with the file.
- * - std::stringstream buffer allows to stock what has been read from ifs, 
- * 	using the member function : rdbuf().
- * - buffer.str() transform content's buffer in a string.
+ * - if an error occured when we try to link the stream with the file, an exeption is throwned
+ * - std::getline() is used to browse the filestream line by line.
+ * 		=> getline extracts characters from an input stream until '/n' and places them into a string.
  * 
- * useful link : 
- * https://stackoverflow.com/questions/2602013/read-whole-ascii-file-into-c-stdstring
- * @return std::string : file's content OR nothing if errors occurs when the file was maniplated 		
+ * When we browsed the file line by line :
+ * - split on comma to get the date and the the corresponding Bitcoin rate.
+ * - create a BitcoinExchange object with an arg constructor to store date, and Bitcoin rate.
+ * - insert the new object to the map container.
+ * 
+ * 
+ * @param map : std::map<std::string, BitcoinExchange>
+ * - key value : date
+ * - mapped value : BitcoinExhange object
+ * 
+ * Useful links :
+ * - std::getline() : https://cplusplus.com/reference/string/string/getline/
+ * - std::map::insert() : https://cplusplus.com/reference/map/map/insert/
  */
-
-void	fillBitcoinExchange(std::map<std::string, BitcoinExchange> &map)
+void	fillBitcoinExchangeContainer(std::map<std::string, BitcoinExchange> &map)
 {
 	(void)map;
 
@@ -31,8 +50,15 @@ void	fillBitcoinExchange(std::map<std::string, BitcoinExchange> &map)
 	int i = 0;
 	while (std::getline(ifs, line) && i < 4)
 	{
-		// split sur la virgule et mettre dans le map
 		std::cout << line << std::endl;
+		// split sur la virgule
+		parseData(line);
+		// BitcoinExchange	new_element = parseData(line);
+		// OU BitcoinExchange	new_element(/*args*/);
+		
+		// mettre dans le map
+		// map.insert(std::pair<std::string, BitcoinExchange>('a',new_element) );
+		
 		i++;
 	}
 	
@@ -46,12 +72,14 @@ int	main(void)
 
 	try
 	{
-		fillBitcoinExchange(BitcoinExchange);
+		fillBitcoinExchangeContainer(BitcoinExchange);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << "Error : " << e.what() << std::endl;
 		return (-1);
 	}
+
+	// print map to check it's filled
 	
 }
