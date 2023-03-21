@@ -2,6 +2,47 @@
 
 # define FILE_PATH "./data.csv"
 
+// int		inputsAreValid(std::string date, std::string value)
+// {
+
+// 	if (value_str.find('.') == string::npos && )
+
+// 	// float		value = atof(value_str.c_str());
+
+// }
+
+void	printBitcoinAmount(std::string file_name, std::map<std::string, BitcoinExchange> BitcoinExchangeMap)
+{
+	(void)BitcoinExchangeMap;
+	std::ifstream		ifs(file_name.c_str());
+	
+	if (ifs.is_open() == false || ifs.fail() == true)
+	{
+		ifs.close();
+		throw std::runtime_error(std::string("Failed to open file ") + file_name);
+	}
+	
+	std::string line;
+	while (std::getline(ifs, line))
+	{
+		std::cout << "line : " << line << std::endl;
+		size_t		delimiter_pos = line.find('|');
+		std::string	date = line.substr(0, delimiter_pos);
+		std::string	value_str = line.substr(delimiter_pos + 1, std::string::npos);
+		// if (inputsAreValid(date, value) == FAILURE)
+		// 	return ;
+		float		value = atof(value_str.c_str());
+		
+		std::cout << "date : " << date << " / value : " << value << std::endl;
+		
+		// trouver le maillon dans map qui correspond a la date
+		// appel a la fonction membre to print la convertion
+
+
+	}
+	ifs.close();
+}
+
 /**
  * @brief Get data from a file, parse file and fill a map container of BitcoinExchange objects.
  * 
@@ -27,10 +68,12 @@
 void	fillBitcoinExchange(std::map<std::string, BitcoinExchange> &map)
 {
 	std::ifstream		ifs(FILE_PATH);
-	std::stringstream	buffer;
 
 	if (ifs.is_open() == false || ifs.fail() == true)
+	{
+		ifs.close();
 		throw std::runtime_error(std::string("Failed to open file ") + FILE_PATH);
+	}
 	
 	std::string line;
 	while (std::getline(ifs, line))
@@ -48,13 +91,19 @@ void	fillBitcoinExchange(std::map<std::string, BitcoinExchange> &map)
 	ifs.close();
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	std::map<std::string, BitcoinExchange>	BitcoinExchangeMap;
+	if (argc != 2)
+	{
+		std::cerr << "Error : Correct usage ./btc <file>" << std::endl;
+		return (FAILURE);
+	}
 
+	std::map<std::string, BitcoinExchange>	BitcoinExchangeMap;
 	try
 	{
 		fillBitcoinExchange(BitcoinExchangeMap);
+		printBitcoinAmount(argv[1], BitcoinExchangeMap);
 	}
 	catch(const std::exception& e)
 	{
@@ -62,13 +111,17 @@ int	main(void)
 		return (FAILURE);
 	}
 
+	// pour checker si jamais on trouve pas la date ; insert puisque tri autonmatique, puis prendre celui d'avant, puis delete
+	// BitcoinExchange	new_element("2010-08-24", 2);
+	// BitcoinExchangeMap.insert(std::pair<std::string, BitcoinExchange>("2010-08-24",new_element));
+	
 	// print map to check it's filled
-	// std::map<std::string, BitcoinExchange>::iterator it = BitcoinExchangeMap.begin();
-	// for (int i = 0; i < 5; i++)
-	// {
-	// 	std::cout << "node : " << i << " / date : " << it->second.getDate() << " / rate : " << it->second.getBitcoinRate() << std::endl;
-	// 	it++;
-	// }
+	std::map<std::string, BitcoinExchange>::iterator it = BitcoinExchangeMap.begin();
+	for (int i = 0; i < 10; i++)
+	{
+		std::cout << "node : " << i << " / date : " << it->second.getDate() << " / rate : " << it->second.getBitcoinRate() << std::endl;
+		it++;
+	}
 
 	return (SUCCESS);
 }
