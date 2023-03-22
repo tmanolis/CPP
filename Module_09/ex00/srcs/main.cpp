@@ -2,16 +2,42 @@
 
 # define FILE_PATH "./data.csv"
 
-// int		inputsAreValid(std::string date, std::string value)
-// {
+/**
+ * @brief 
+ * 
+ * @param date 
+ * @return int 
+ * 
+ * Useful link : https://stackoverflow.com/questions/19482378/how-to-parse-and-validate-a-date-in-stdstring-in-c
+ */
+int		checkDateisValid(std::string date)
+{
+	if (std::sscanf(date.c_str(), "%d-%d-%d", &year, &month, &day) == 3)
+	{
 
-// 	if (value_str.find('.') == string::npos && )
+	}
+	else
+		std::cerr << "Error: Invalid Format" << std::endl;
+}
 
-// 	// float		value = atof(value_str.c_str());
+int		checkInputsAreValid(std::string date, float value)
+{
+	
+	if (value < 0)
+	{
+		std::cerr << "Error: not a positive number." << std::endl;
+		return (FAILURE);
+	}
+	if (value > 1000)
+	{
+		std::cerr << "Error: number is too large." << std::endl;
+		return (FAILURE);
+	}
+	
 
-// }
+}
 
-void	printBitcoinAmount(std::string file_name, std::map<std::string, BitcoinExchange> BitcoinExchangeMap)
+void	printBitcoinValue(std::string file_name, std::map<std::string, BitcoinExchange> BitcoinExchangeMap)
 {
 	(void)BitcoinExchangeMap;
 	std::ifstream		ifs(file_name.c_str());
@@ -25,14 +51,14 @@ void	printBitcoinAmount(std::string file_name, std::map<std::string, BitcoinExch
 	std::string line;
 	while (std::getline(ifs, line))
 	{
+		// mettre une condition pour gerer la 1ere ligne si c'est un titre
 		std::cout << "line : " << line << std::endl;
 		size_t		delimiter_pos = line.find('|');
 		std::string	date = line.substr(0, delimiter_pos);
-		std::string	value_str = line.substr(delimiter_pos + 1, std::string::npos);
-		// if (inputsAreValid(date, value) == FAILURE)
+		float		value = atof(line.substr(delimiter_pos + 1, std::string::npos).c_str());
+		// if (checkInputsAreValid(date, value) == FAILURE)
 		// 	return ;
-		float		value = atof(value_str.c_str());
-		
+	
 		std::cout << "date : " << date << " / value : " << value << std::endl;
 		
 		// trouver le maillon dans map qui correspond a la date
@@ -95,7 +121,7 @@ int	main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		std::cerr << "Error : Correct usage ./btc <file>" << std::endl;
+		std::cerr << "Error: Correct usage ./btc <file>" << std::endl;
 		return (FAILURE);
 	}
 
@@ -103,11 +129,11 @@ int	main(int argc, char **argv)
 	try
 	{
 		fillBitcoinExchange(BitcoinExchangeMap);
-		printBitcoinAmount(argv[1], BitcoinExchangeMap);
+		printBitcoinValue(argv[1], BitcoinExchangeMap);
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << "Error : " << e.what() << std::endl;
+		std::cerr << "Error: " << e.what() << std::endl;
 		return (FAILURE);
 	}
 

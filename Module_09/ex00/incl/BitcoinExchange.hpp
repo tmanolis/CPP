@@ -29,7 +29,7 @@ class BitcoinExchange
 		std::string	getDate() const;
 		float		getBitcoinRate() const;
 		// Member functions
-		void		calculateBitcoinAmount() const;
+		void		calculateBitcoinValue() const;
 
 };
 
