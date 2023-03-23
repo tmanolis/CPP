@@ -10,7 +10,7 @@
 # include <fstream>
 # include <sstream>
 # include <map>
-
+# include <ctime>
 
 class BitcoinExchange
 {
@@ -29,10 +29,10 @@ class BitcoinExchange
 		std::string	getDate() const;
 		float		getBitcoinRate() const;
 		// Member functions
+		// findMatchingDate()
 		void		calculateBitcoinValue() const;
 
 };
-
 
 #endif
 

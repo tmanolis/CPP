@@ -3,26 +3,66 @@
 # define FILE_PATH "./data.csv"
 
 /**
- * @brief 
+ * @brief Check if the given date can exist (e.g. 2022-02-30)
  * 
- * @param date 
- * @return int 
+ * - mktime() : time_t mktime (struct tm * timeptr);
+ * Returns the value of type time_t that represents the local time described by the tm structure.
  * 
- * Useful link : https://stackoverflow.com/questions/19482378/how-to-parse-and-validate-a-date-in-stdstring-in-c
+ * The values of the members tm_wday and tm_yday of timeptr are ignored, 
+ * and the values of the other members are interpreted even if out of their valid ranges (see struct tm). 
+ * For example, tm_mday may contain values above 31, which are interpreted accordingly as the days that follow the last day of the selected month.
+ * A call to this function automatically adjusts the values of the members of timeptr if they are off-range.
+ * 
+ * - localtime() : struct tm * localtime (const time_t * timer);
+ * Uses the value pointed by timer to fill a tm structure with the values that represent the corresponding time. (UNIX time stamp)
+ * 
+ * Useful link : https://koor.fr/C/ctime/struct_tm.wp
+ * https://stackoverflow.com/questions/19482378/how-to-parse-and-validate-a-date-in-stdstring-in-c
  */
-int		checkDateisValid(std::string date)
+int		checkDateisValid(int year, int month, int day)
 {
-	if (std::sscanf(date.c_str(), "%d-%d-%d", &year, &month, &day) == 3)
-	{
+	// fill the tm struct with our given day, month and year
+	struct tm t;
+	t.tm_sec = 30;
+	t.tm_min = 30;
+	t.tm_hour = 0;
+    t.tm_mday = day;
+	t.tm_mon = month - 1;
+	t.tm_year = year - 1900;
+	t.tm_isdst = -1;
 
-	}
+	// normalize (if tm struct filled is not a valid, mktime() will adjust it):
+	time_t when = mktime(&t);
+	const struct tm *norm = localtime(&when);
+	// the actual date would be:
+	// m = norm->tm_mon + 1;
+	// d = norm->tm_mday;
+	// y = norm->tm_year;
+	// e.g. 29/02/2013 would become 01/03/2013
+
+	// validate (is the normalized date still the same than ours?):
+	if (norm->tm_mday == day && norm->tm_mon  == month - 1 && norm->tm_year == year - 1900)
+		return (SUCCESS);
 	else
-		std::cerr << "Error: Invalid Format" << std::endl;
+		return (FAILURE);
 }
 
 int		checkInputsAreValid(std::string date, float value)
 {
-	
+	// check date
+	int year, month, day;
+	if (std::sscanf(date.c_str(), "%d-%d-%d", &year, &month, &day) != 3)
+	{
+		std::cerr << "Error: Invalid date format => " << date << std::endl;
+		return (FAILURE);
+	}
+	if (checkDateisValid(year, month, day) == FAILURE)
+	{
+		std::cerr << "Error: Date is invalid => " << date << std::endl;
+		return (FAILURE);
+	}
+
+	// check value
 	if (value < 0)
 	{
 		std::cerr << "Error: not a positive number." << std::endl;
@@ -33,8 +73,7 @@ int		checkInputsAreValid(std::string date, float value)
 		std::cerr << "Error: number is too large." << std::endl;
 		return (FAILURE);
 	}
-	
-
+	return (SUCCESS);
 }
 
 void	printBitcoinValue(std::string file_name, std::map<std::string, BitcoinExchange> BitcoinExchangeMap)
@@ -48,6 +87,7 @@ void	printBitcoinValue(std::string file_name, std::map<std::string, BitcoinExcha
 		throw std::runtime_error(std::string("Failed to open file ") + file_name);
 	}
 	
+	// file is empty ?
 	std::string line;
 	while (std::getline(ifs, line))
 	{
@@ -56,10 +96,10 @@ void	printBitcoinValue(std::string file_name, std::map<std::string, BitcoinExcha
 		size_t		delimiter_pos = line.find('|');
 		std::string	date = line.substr(0, delimiter_pos);
 		float		value = atof(line.substr(delimiter_pos + 1, std::string::npos).c_str());
-		// if (checkInputsAreValid(date, value) == FAILURE)
-		// 	return ;
+		if (checkInputsAreValid(date, value) == FAILURE)
+			continue ;
 	
-		std::cout << "date : " << date << " / value : " << value << std::endl;
+		std::cout << "date : |" << date << "| / value : " << value << std::endl;
 		
 		// trouver le maillon dans map qui correspond a la date
 		// appel a la fonction membre to print la convertion
@@ -107,8 +147,7 @@ void	fillBitcoinExchange(std::map<std::string, BitcoinExchange> &map)
 		// Parse line
 		size_t		delimiter_pos = line.find(',');
 		std::string	date = line.substr(0, delimiter_pos);
-		std::string	value = line.substr(delimiter_pos + 1, std::string::npos);
-		float		rate = atof(value.c_str());
+		float		rate = atof(line.substr(delimiter_pos + 1, std::string::npos).c_str());
 		
 		// add a new element into the map container
 		BitcoinExchange	new_element(date, rate);
@@ -145,7 +184,7 @@ int	main(int argc, char **argv)
 	std::map<std::string, BitcoinExchange>::iterator it = BitcoinExchangeMap.begin();
 	for (int i = 0; i < 10; i++)
 	{
-		std::cout << "node : " << i << " / date : " << it->second.getDate() << " / rate : " << it->second.getBitcoinRate() << std::endl;
+		std::cout << "node : " << i << " / date : |" << it->second.getDate() << "| / rate : " << it->second.getBitcoinRate() << std::endl;
 		it++;
 	}
 
