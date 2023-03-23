@@ -36,7 +36,8 @@ float		BitcoinExchange::getBitcoinRate() const
 }
 
 /* Member functions */
-void	BitcoinExchange::calculateBitcoinAmount(float value) const
+void	BitcoinExchange::calculateBitcoinAmount(std::string date, float value) const
 {
-	(void)value;
+	float amount = this->_BitcoinRate * value;
+	std::cout << date << " => " << value << " = " << amount << std::endl;
 }

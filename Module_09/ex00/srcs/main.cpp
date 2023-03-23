@@ -4,15 +4,23 @@
 
 void findBitcoinRate(std::string date, float value, std::map<std::string, BitcoinExchange> BitcoinExchangeMap)
 {
-	(void)date;
-	(void)value;
-	(void)BitcoinExchangeMap;
 	// trouver le maillon dans map qui correspond a la date
-	// appel a la fonction membre to print la convertion
-
-	// pour checker si jamais on trouve pas la date ; insert puisque tri autonmatique, puis prendre celui d'avant, puis delete
-	// BitcoinExchange	new_element("2010-08-24", 2);
-	// BitcoinExchangeMap.insert(std::pair<std::string, BitcoinExchange>("2010-08-24",new_element));
+	std::map<std::string, BitcoinExchange>::iterator	it = BitcoinExchangeMap.find(date);
+	// si jamais on trouve pas la date insert puisque tri autonmatique
+	if (it == BitcoinExchangeMap.end())
+	{
+		BitcoinExchange	tmp;
+		BitcoinExchangeMap.insert(std::pair<std::string, BitcoinExchange>(date, tmp));
+		it = BitcoinExchangeMap.find(date);
+		// check if the date is not before the first one in data.csv
+		if (it == BitcoinExchangeMap.begin())
+		{
+			std::cerr << "Error: Couldn't find a rate related for : " << date << ".  This date is previous all our data." <<std::endl;
+			return ;
+		}
+		it--;
+	}
+	it->second.calculateBitcoinAmount(date, value);
 }
 
 /**
@@ -34,7 +42,8 @@ void findBitcoinRate(std::string date, float value, std::map<std::string, Bitcoi
  */
 int		checkDateisValid(int year, int month, int day)
 {
-	std::cout << "year : " << year << " - month : " << month << " - day : " << day << std::endl;
+	// std::cout << "year : " << year << " - month : " << month << " - day : " << day << std::endl;
+	
 	// fill the tm struct with our given day, month and year
 	struct tm t;
 	t.tm_sec = 30;
@@ -99,7 +108,6 @@ int		checkInputsAreValid(std::string line, std::string &date, float &value)
 		std::cerr << "Error: number is too large." << std::endl;
 		return (FAILURE);
 	}
-	// std::cout << "date : |" << date << "| / value : |" << value << std::endl;
 	return (SUCCESS);
 }
 
@@ -118,7 +126,6 @@ void	printBitcoinAmount(std::string file_name, std::map<std::string, BitcoinExch
 	float 		value;
 	while (std::getline(ifs, line))
 	{
-		std::cout << "line : " << line << std::endl;
 		if (checkInputsAreValid(line, date, value) == FAILURE)
 			continue ;
 		findBitcoinRate(date, value, BitcoinExchangeMap);
@@ -192,14 +199,6 @@ int	main(int argc, char **argv)
 		std::cerr << "Error: " << e.what() << std::endl;
 		return (FAILURE);
 	}
-	
-	// print map to check it's filled
-	// std::map<std::string, BitcoinExchange>::iterator it = BitcoinExchangeMap.begin();
-	// for (int i = 0; i < 10; i++)
-	// {
-	// 	std::cout << "node : " << i << " / date : |" << it->second.getDate() << "| / rate : " << it->second.getBitcoinRate() << std::endl;
-	// 	it++;
-	// }
 
 	return (SUCCESS);
 }
