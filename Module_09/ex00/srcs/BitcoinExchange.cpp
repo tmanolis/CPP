@@ -36,8 +36,7 @@ float		BitcoinExchange::getBitcoinRate() const
 }
 
 /* Member functions */
-
-void	BitcoinExchange::calculateBitcoinValue() const
+void	BitcoinExchange::calculateBitcoinAmount(float value) const
 {
-	
+	(void)value;
 }
