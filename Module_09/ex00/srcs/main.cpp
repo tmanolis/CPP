@@ -2,11 +2,24 @@
 
 # define FILE_PATH "./data.csv"
 
+/**
+ * @brief Retrieve the Bitcoin's rate corresponding to the date given in args
+ * 
+ * - find if there is an element in the BitcoinExchangeMap matching our date
+ * - if not :
+ * 	-> create a tmp new element with date in key and insert it into BitcoinExchangeMap
+ * 	-> map container sort by order its element, so we retrieve the new tmp elememt and look for the one before
+ * 	  (the one before is the rate we will use to convert our Bitcoins amount)
+ * 
+ * @param date : find the Bitcoin rate corresponding to this date
+ * @param value : amount of bitcoin who need to be coverted with the rate
+ * @param BitcoinExchangeMap : contains all the 
+ */
 void findBitcoinRate(std::string date, float value, std::map<std::string, BitcoinExchange> BitcoinExchangeMap)
 {
-	// trouver le maillon dans map qui correspond a la date
+	// find element element with a key matching the date given in args
 	std::map<std::string, BitcoinExchange>::iterator	it = BitcoinExchangeMap.find(date);
-	// si jamais on trouve pas la date insert puisque tri autonmatique
+	// No matching key
 	if (it == BitcoinExchangeMap.end())
 	{
 		BitcoinExchange	tmp;
