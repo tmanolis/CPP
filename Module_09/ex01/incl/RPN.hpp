@@ -24,7 +24,7 @@ class RPN
 	std::stack<int>	getMystack() const;
 	// Member functions
 	void			resolve(std::string str);
-
+	void			calculate(char c);
 };
 
 

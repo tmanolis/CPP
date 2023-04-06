@@ -20,5 +20,7 @@ int	main(int argc, char **argv)
 		return (FAILURE);
 	}
 	
+	// print rpn : faire une surchage d'operateur << pour print le 1er element de la stack :
+	// std::cout << rpn << std::endl;
 	return (SUCCESS);
 }

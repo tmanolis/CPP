@@ -40,12 +40,19 @@ void	RPN::resolve(std::string str)
 		{
 			// if != "+ - / *"
 			// {
-				// throw std::runtime_error("");
 			// 	std::cerr << *it << " is not a valid input" << std::endl;
-			// 	return (FAILURE);
+			//	throw std::runtime_error(""); / throw ;
 			// }
+			if (_mystack.size() >= 2)
+				calculate(*it);
+			else
+				throw std::runtime_error("Inverted Polish mathematical expression given is incorrect"); 
 			
 		}
 	}
+}
 
+void	RPN::calculate(char c)
+{
+	
 }
