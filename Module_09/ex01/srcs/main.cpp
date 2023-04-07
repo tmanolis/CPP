@@ -19,8 +19,8 @@ int	main(int argc, char **argv)
 		std::cerr << e.what() << std::endl;
 		return (FAILURE);
 	}
-	
 	// print rpn : faire une surchage d'operateur << pour print le 1er element de la stack :
 	// std::cout << rpn << std::endl;
+	std::cout << "RESULTAT FINAL :" << rpn.getMystack().top() << std::endl;
 	return (SUCCESS);
 }
