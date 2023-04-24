@@ -23,6 +23,18 @@ BitcoinExchange::BitcoinExchange(std::string date, float rate) : _Date(date), _B
 
 }
 
+/* Operator Overload */
+
+BitcoinExchange & BitcoinExchange::operator=(BitcoinExchange const &rhs)
+{
+	if (this != &rhs)
+	{
+		this->_Date = rhs.getDate();
+		this->_BitcoinRate = rhs.getBitcoinRate();
+	}
+	return (*this);
+}
+
 /* Accessors */
 
 std::string	BitcoinExchange::getDate() const

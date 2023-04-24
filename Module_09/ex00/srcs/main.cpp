@@ -93,9 +93,9 @@ int		checkInputsAreValid(std::string line, std::string &date, float &value)
 	}
 
 	date = line.substr(0, delimiter_pos);
-	// remove whitespace after at the end
-	while (!date.empty() && std::isspace(date.back()))
-		date.pop_back();
+	// remove whitespace at the end
+	while (!date.empty() && std::isspace(date[date.length()-1]))
+    	date.erase(date.length()-1);
 	// check date
 	int year, month, day;
 	if (std::sscanf(date.c_str(), "%d-%d-%d", &year, &month, &day) != 3)
