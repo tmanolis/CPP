@@ -1,6 +1,9 @@
 #ifndef PMERGEME_HPP
-
 # define PMERGEME_HPP
+
+# define SUCCESS 0
+# define FAILURE -1
+
 # include <vector>
 # include <list>
 
