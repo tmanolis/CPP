@@ -11,7 +11,6 @@
 
 class RPN
 {
-
 	private:
 		std::stack<int>	_mystack;
 
@@ -20,6 +19,8 @@ class RPN
 		RPN(RPN const &src);				// Copy Constructor
 		~RPN();								// Destructor
 
+	// Operator Overload
+	RPN	& operator=(RPN const &rhs);
 	// Accessors
 	std::stack<int>	getMystack() const;
 	// Member functions
@@ -27,6 +28,7 @@ class RPN
 	void			calculate(char c);
 };
 
+std::ostream & operator<<(std::ostream &o, RPN const &src);
 
 #endif
 

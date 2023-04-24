@@ -21,9 +21,7 @@ int	main(int argc, char **argv)
 	}
 	
 	if (rpn.getMystack().size() == 1)
-	// print rpn : faire une surchage d'operateur << pour print le 1er element de la stack :
-	// std::cout << rpn << std::endl;
-		std::cout << "Result: " << rpn.getMystack().top() << std::endl;
+		std::cout << "Result: " << rpn << std::endl;
 	else
 	{
 		std::cerr << "Error: Inverted Polish mathematical expression given is incorrect" << std::endl;

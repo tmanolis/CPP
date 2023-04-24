@@ -15,6 +15,24 @@ RPN::~RPN()
 {
 }
 
+/* Operator Overload */
+
+RPN & RPN::operator=(RPN const &rhs)
+{
+	if (this != &rhs)
+	{
+		this->_mystack = rhs.getMystack();
+	}
+	return (*this);
+}
+
+std::ostream & operator<<(std::ostream &o, RPN const &src)
+{
+	o << src.getMystack().top();
+
+	return (o);
+}
+
 /* Accessors */
 
 std::stack<int>	RPN::getMystack() const
@@ -29,11 +47,11 @@ void	RPN::resolve(std::string str)
 	for (std::string::iterator it = str.begin(); it!=str.end(); it++)
 	{
 		int	nb;
-		if (std::iswspace(*it) == true)
+		if (iswspace(*it))
 			it++;
-		if (std::isdigit(*it) == true)
+		if (isdigit(*it))
 		{
-			nb = *it - '0'; // convert ascii value for a single digit number into the right integer value
+			nb = *it - '0';		// convert ascii value for a single digit number into the right integer value
 			_mystack.push(nb);
 		}
 		else
