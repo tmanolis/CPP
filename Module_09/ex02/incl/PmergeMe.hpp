@@ -4,6 +4,10 @@
 # define SUCCESS 0
 # define FAILURE -1
 
+# include <iostream>
+# include <cstdlib>
+# include <climits>
+# include <cstring>
 # include <vector>
 # include <list>
 
@@ -18,6 +22,7 @@ class PmergeMe
 		PmergeMe(PmergeMe const & src);		// Copy Constructor
 		~PmergeMe();						// Destructor
 		
+		PmergeMe(char **argv);				// Parametric Constructor
 		// Operator Overload
 		PmergeMe & operator=( PmergeMe const & rhs );
 		// Accessors
