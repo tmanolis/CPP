@@ -7,7 +7,7 @@
 # include <iostream>
 # include <cstdlib>
 # include <climits>
-# include <cstring>
+# include <sstream>
 # include <vector>
 # include <list>
 
