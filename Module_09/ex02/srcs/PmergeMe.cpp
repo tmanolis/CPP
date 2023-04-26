@@ -54,6 +54,19 @@ std::list<int> PmergeMe::GetKristyList() const
 
 /* Member functions */
 
+bool	PmergeMe::isSorted()
+{
+	if (_John_vector.size() <= 1)
+		return (true);
+
+	for (size_t i = 0; i < _John_vector.size() - 1; i++)
+	{
+		if (_John_vector[i] > _John_vector[i + 1])
+			return (false);
+	}
+	return (true);
+}
+
 // #########################################
 // #				VECTOR			       #
 // #########################################

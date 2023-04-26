@@ -46,10 +46,16 @@ int	main(int argc, char **argv)
 	// {
 	// 	std::cout << "vector[" << i << "] : " << myPmerge.GetJohnVector()[i] << std::endl;
 	// }
+	
+	if (myPmerge.isSorted() == true)
+	{
+		std::cerr << "Error: this sequence is already sorted" << std::endl;
+		return (FAILURE);
+	}
 
     double time_taken_JohnVector = myPmerge.sortJohnVector();
-    std::cout << "time in micro sec : " << time_taken_JohnVector << std::endl;
-	// print function
-	
+	// print function print result (argv, myPmerge, time_taken_JohnVector, time_taken_KristyList)
+	std::cout << "time in micro sec : " << time_taken_JohnVector << std::endl;
+
 	return (SUCCESS);
 }

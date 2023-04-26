@@ -34,6 +34,7 @@ class PmergeMe
 		std::vector<int>	GetJohnVector() const;
 		std::list<int>		GetKristyList() const;
 		// Member functions
+		bool	isSorted();
 		double	sortJohnVector();
 };
 
