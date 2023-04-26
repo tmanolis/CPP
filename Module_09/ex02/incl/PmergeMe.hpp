@@ -4,6 +4,9 @@
 # define SUCCESS 0
 # define FAILURE -1
 
+#define THRESHOLD 7
+// Useful link : https://stackoverflow.com/questions/47945589/why-is-insertion-sort-on2-better-at-sorting-small-array-7-elements-compare
+
 # include <iostream>
 # include <cstdlib>
 # include <climits>
@@ -11,11 +14,13 @@
 # include <vector>
 # include <list>
 
+# include <unistd.h>
+
 class PmergeMe
 {
 	private:
-		std::vector<int>	John_vector;
-		std::list<int>		Kristy_list;
+		std::vector<int>	_John_vector;
+		std::list<int>		_Kristy_list;
 		
 	public:
 		PmergeMe();							// Default Constructor
@@ -29,7 +34,7 @@ class PmergeMe
 		std::vector<int>	GetJohnVector() const;
 		std::list<int>		GetKristyList() const;
 		// Member functions
-
+		double	sortJohnVector();
 };
 
 #endif

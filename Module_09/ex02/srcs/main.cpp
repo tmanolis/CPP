@@ -23,7 +23,7 @@ bool	checkArgsAreValids(char **argv)
         if (iss.fail() || value < 0 || value > INT_MAX)
 		{
             std::cerr << "Error: " << argv[i] << " is not a valid positive integer." << std::endl;
-            return false;
+            return (false);
         }
     }
 
@@ -40,7 +40,16 @@ int	main(int argc, char **argv)
 	if (checkArgsAreValids(argv) == false)
 		return (FAILURE);
 
-	// PmergeMe	myPmerge(argv);
+	PmergeMe	myPmerge(argv);
 	// link : https://stackoverflow.com/questions/26478139/properly-combining-merge-sort-and-insertion-sort-in-c
+	// for (int i = 0; i < argc - 1; i++)
+	// {
+	// 	std::cout << "vector[" << i << "] : " << myPmerge.GetJohnVector()[i] << std::endl;
+	// }
+
+    double time_taken_JohnVector = myPmerge.sortJohnVector();
+    std::cout << "time in micro sec : " << time_taken_JohnVector << std::endl;
+	// print function
+	
 	return (SUCCESS);
 }
