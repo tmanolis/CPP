@@ -74,9 +74,8 @@ bool	PmergeMe::isSorted()
 /*
 Useful link : Useful link : https://programmercave0.github.io/blog/2017/08/20/C++-Insertion-Sort-using-STL-(Sorting)
 */
-static double	insertSort(std::vector<int> &vec)
+static void	insertSort(std::vector<int> &vec)
 {
-	clock_t start_time = clock();
 	
 	for(std::size_t j = 1; j < vec.size(); j++)
     {
@@ -90,51 +89,72 @@ static double	insertSort(std::vector<int> &vec)
       } 
       vec[i+1] = key;
     }
-
-	clock_t end_time = clock(); // End time
-    return ((double)(end_time - start_time) / ((double)CLOCKS_PER_SEC/1000000));	// Time taken in microseconds
 }
 
-// If r > l
-//      Finding the middle point to divide the array into two halves:  
-//              middle m = l + (r-l)/2
-//      Calling mergeSort for the first half:   
-//              mergeSort(arr, l, m)
-//      Calling mergeSort for the second half:
-//              mergeSort(arr, m+1, r)
-//      Now, merge the two halves sorted in the above steps:
-//              merge(arr, l, m, r)
+static void	mergeHalves(std::vector<int> leftHalf, std::vector<int> rightHalf, std::vector<int> &vec)
+{
+	std::vector<int> sorted;
+
+	// Merge the halves : store l'élément le plus petit dans le temp vector sorted
+	while (leftHalf.empty() == false && rightHalf.empty() == false)
+	{
+		if (leftHalf.front() <= rightHalf.front())
+		{
+			sorted.push_back(leftHalf.front()); // on push la valeur la plus petite
+			leftHalf.erase(leftHalf.begin()); // on l'efface du sub array
+		}
+		else
+		{
+			sorted.push_back(rightHalf.front());
+			rightHalf.erase(rightHalf.begin());
+		}
+	}
+
+	// Insert all the remaining values into the vector sorted
+	while (leftHalf.empty() == false)
+	{
+		sorted.push_back(leftHalf.front());
+		leftHalf.erase(leftHalf.begin());
+	}
+
+	while (rightHalf.empty() == false)
+	{
+		sorted.push_back(rightHalf.front());
+		rightHalf.erase(rightHalf.begin());
+	}
+	vec = sorted;
+}
 
 /* 
 Useful link : https://www.codingninjas.com/codestudio/library/sorting-by-combining-insertion-sort-and-merge-sort-algorithms
 */
-static void	mergeSort(std::vector<int> &vec)
+static void	merge_insertSort(std::vector<int> &vec)
 {
 	std::vector<int>	leftHalf;
 	std::vector<int>	rightHalf;
 
+	if (vec.size() <= 1)
+		return ;
+	if (vec.size() <= THRESHOLD)
+		return (insertSort(vec));
+
 	// Finding the middle point to divide the vector into two halves
 	leftHalf.assign(vec.begin(), vec.begin() + vec.size()/2);
-	// for (size_t i = 0; i < leftHalf.size(); i++)
-	// 	std::cout << leftHalf[i] << " ";
-	// std::cout << std::endl;
-	
 	rightHalf.assign(vec.begin() + vec.size() / 2, vec.end());
-	// for (size_t i = 0; i < rightHalf.size(); i++)
-	// 	std::cout << rightHalf[i] << " ";
-	// std::cout << std::endl;
 
+	// Calling merge_insertSort for the first half and second half
+	merge_insertSort(leftHalf);
+	merge_insertSort(rightHalf);
+
+	// Merge the two halves sorted in the above steps
+	mergeHalves(leftHalf, rightHalf, vec);
 }
 
 double	PmergeMe::sortJohnVector()
 {
-    if (_John_vector.size() <= THRESHOLD)
-		return (insertSort(_John_vector));
-	
 	clock_t start_time = clock(); // Start time
-	mergeSort(_John_vector);
+	merge_insertSort(_John_vector);
 	clock_t end_time = clock(); // End time
 
     return ((double)(end_time - start_time) / ((double)CLOCKS_PER_SEC/1000000)); // Time taken in microseconds
-	
 }
