@@ -6,7 +6,7 @@ void	printResult(char **argv, std::vector<int> JohnVector, double time_taken_Joh
 	for (int i = 1; argv[i]; i++)
 		std::cout << argv[i] << " ";
 	std::cout << "\nAfter: ";
-	for (size_t i = 0; i < JohnVector.size() - 1; i++)
+	for (size_t i = 0; i < JohnVector.size(); i++)
 		std::cout << JohnVector[i] << " ";
 
 	std::cout << "\nTime to process a range of " << JohnVector.size() << " with [std::vector] : " << time_taken_JohnVector << " us" << std::endl;
@@ -64,7 +64,7 @@ int	main(int argc, char **argv)
 	}
 	
     double time_taken_JohnVector = myPmerge.sortJohnVector();
-	double time_taken_KristyList = myPmerge.sortJohnVector();
+	double time_taken_KristyList = 0; // need to be changed
 	printResult(argv, myPmerge.GetJohnVector(), time_taken_JohnVector, time_taken_KristyList);
 
 	return (SUCCESS);
