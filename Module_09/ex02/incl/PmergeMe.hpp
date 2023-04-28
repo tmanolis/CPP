@@ -12,6 +12,7 @@
 # include <climits>
 # include <sstream>
 # include <vector>
+# include <deque>
 # include <list>
 
 # include <unistd.h>
@@ -21,6 +22,7 @@ class PmergeMe
 	private:
 		std::vector<int>	_John_vector;
 		std::list<int>		_Kristy_list;
+		std::deque<int>		_Mydeque;
 		
 	public:
 		PmergeMe();							// Default Constructor
@@ -34,8 +36,8 @@ class PmergeMe
 		std::vector<int>	GetJohnVector() const;
 		std::list<int>		GetKristyList() const;
 		// Member functions
-		bool	isSorted();
-		double	sortJohnVector();
+		bool	isSorted() const;
+		void	sort(double &time_JohnVector, double &time_KristyList);
 };
 
 #endif
