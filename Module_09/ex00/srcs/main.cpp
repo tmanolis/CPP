@@ -128,7 +128,7 @@ void	printBitcoinAmount(std::string file_name, std::map<std::string, BitcoinExch
 {
 	std::ifstream		ifs(file_name.c_str());
 	
-	if (ifs.is_open() == false || ifs.fail() == true)
+	if (ifs.is_open() == false || ifs.fail() == true || ifs.peek() == EOF)
 	{
 		ifs.close();
 		throw std::runtime_error(std::string("Failed to open file ") + file_name);
@@ -172,7 +172,7 @@ void	fillBitcoinExchange(std::map<std::string, BitcoinExchange> &map)
 {
 	std::ifstream		ifs(FILE_PATH);
 
-	if (ifs.is_open() == false || ifs.fail() == true)
+	if (ifs.is_open() == false || ifs.fail() == true || ifs.peek() == EOF)
 	{
 		ifs.close();
 		throw std::runtime_error(std::string("Failed to open file ") + FILE_PATH);
