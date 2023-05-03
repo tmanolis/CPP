@@ -37,7 +37,7 @@ class PmergeMe
 		std::list<int>		GetKristyList() const;
 		// Member functions
 		bool	isSorted() const;
-		void	sort(double &time_JohnVector, double &time_KristyList);
+		double	sortJohnVector();
 };
 
 #endif

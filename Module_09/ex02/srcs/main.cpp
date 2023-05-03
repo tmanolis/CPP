@@ -63,10 +63,9 @@ int	main(int argc, char **argv)
 		return (FAILURE);
 	}
 	
-    double time_JohnVector, time_KristyList;
-
-	myPmerge.sort(time_JohnVector, time_KristyList);
-	printResult(argv, myPmerge.GetJohnVector(), time_JohnVector, time_KristyList);
+    double time_taken_JohnVector = myPmerge.sortJohnVector();
+	double time_taken_KristyList = 0; // need to be changed
+	printResult(argv, myPmerge.GetJohnVector(), time_taken_JohnVector, time_taken_KristyList);
 
 	return (SUCCESS);
 }

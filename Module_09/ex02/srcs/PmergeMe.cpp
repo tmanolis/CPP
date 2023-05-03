@@ -75,28 +75,26 @@ bool	PmergeMe::isSorted() const
 /*
 Useful link : Useful link : https://programmercave0.github.io/blog/2017/08/20/C++-Insertion-Sort-using-STL-(Sorting)
 */
-template <typename T>
-static void	insertSort(T &container)
+static void	insertSortJohn(std::vector<int> &vec)
 {
 	
-	for(std::size_t j = 1; j < container.size(); j++)
+	for(std::size_t j = 1; j < vec.size(); j++)
     {
-      int key = container[j];
+      int key = vec[j];
       int i = j-1;
 
-      while(i >= 0 && container[i] > key)
+      while(i >= 0 && vec[i] > key)
       {
-         container[i+1] = container[i];
+         vec[i+1] = vec[i];
          i--;
       } 
-      container[i+1] = key;
+      vec[i+1] = key;
     }
 }
 
-template <typename T>
-static void	mergeHalves(T leftHalf, T rightHalf, T &container)
+static void	mergeHalvesJohn(std::vector<int> leftHalf, std::vector<int> rightHalf, std::vector<int> &vec)
 {
-	T	sorted;
+	std::vector<int> sorted;
 
 	// Merge the halves : store l'élément le plus petit dans le temp vector sorted
 	while (leftHalf.empty() == false && rightHalf.empty() == false)
@@ -125,49 +123,39 @@ static void	mergeHalves(T leftHalf, T rightHalf, T &container)
 		sorted.push_back(rightHalf.front());
 		rightHalf.erase(rightHalf.begin());
 	}
-	container = sorted;
+	vec = sorted;
 }
 
 /* 
 Useful link : https://www.codingninjas.com/codestudio/library/sorting-by-combining-insertion-sort-and-merge-sort-algorithms
 */
-template <typename T>
-static void	merge_insertSort(T &container)
+static void	merge_insertSortJohn(std::vector<int> &vec)
 {
-	T	leftHalf;
-	T	rightHalf;
+	std::vector<int>	leftHalf;
+	std::vector<int>	rightHalf;
 
-	if (container.size() <= 1)
+	if (vec.size() <= 1)
 		return ;
-	if (container.size() <= THRESHOLD)
-		return (insertSort(container));
+	if (vec.size() <= THRESHOLD)
+		return (insertSortJohn(vec));
 
 	// Finding the middle point to divide the vector into two halves
-	leftHalf.assign(container.begin(), container.begin() + container.size()/2);
-	rightHalf.assign(container.begin() + container.size() / 2, container.end());
+	leftHalf.assign(vec.begin(), vec.begin() + vec.size()/2);
+	rightHalf.assign(vec.begin() + vec.size() / 2, vec.end());
 
-	// Calling merge_insertSort for the first half and second half
-	merge_insertSort(leftHalf);
-	merge_insertSort(rightHalf);
+	// Calling merge_insertSortJohn for the first half and second half
+	merge_insertSortJohn(leftHalf);
+	merge_insertSortJohn(rightHalf);
 
 	// Merge the two halves sorted in the above steps
-	mergeHalves(leftHalf, rightHalf, container);
+	mergeHalvesJohn(leftHalf, rightHalf, vec);
 }
 
-void	PmergeMe::sort(double &time_JohnVector, double &time_KristyList)
+double	PmergeMe::sortJohnVector()
 {
-	// Vector
 	clock_t start_time = clock(); // Start time
-	merge_insertSort(_John_vector);
+	merge_insertSortJohn(_John_vector);
 	clock_t end_time = clock(); // End time
-	time_JohnVector = (double)(end_time - start_time) / ((double)CLOCKS_PER_SEC/1000000); // Time taken in microseconds
-	
-	// Deque
-	start_time = clock();
-	merge_insertSort(_Mydeque);
-	end_time = clock();
-	time_KristyList = (double)(end_time - start_time) / ((double)CLOCKS_PER_SEC/1000000);
-	std::cout << "\nDque: ";
-	for (size_t i = 0; i < _Mydeque.size(); i++)
-		std::cout << _Mydeque[i] << " ";
+
+    return ((double)(end_time - start_time) / ((double)CLOCKS_PER_SEC/1000000)); // Time taken in microseconds
 }
