@@ -77,11 +77,14 @@ void	RPN::calculate(char c)
 
 	if (c == '+')
 		result = a + b;
-	if (c == '-')
+	else if (c == '-')
 		result = a - b;
-	if (c == '*')
+	else if (c == '*')
 		result = a * b;
-	if (c == '/')
+	else if (c == '/' && b != 0)
 		result = a / b;
+	else
+		throw std::invalid_argument("Error: It is not possible to divide by 0");
+		
 	_mystack.push(result);
 }
