@@ -1,6 +1,6 @@
 #include "PmergeMe.hpp"
 
-void	printResult(char **argv, std::vector<int> JohnVector, double time_JohnVector, double time_KristyList)
+void	printResult(char **argv, std::vector<int> JohnVector, double time_JohnVector, double time_LanaDeque)
 {
 	std::cout << "Before: ";
 	for (int i = 1; argv[i]; i++)
@@ -10,7 +10,7 @@ void	printResult(char **argv, std::vector<int> JohnVector, double time_JohnVecto
 		std::cout << JohnVector[i] << " ";
 
 	std::cout << "\nTime to process a range of " << JohnVector.size() << " with [std::vector] : " << time_JohnVector << " us" << std::endl;
-	std::cout << "Time to process a range of " << JohnVector.size() << " with [std::list] : " << time_KristyList << " us" << std::endl;
+	std::cout << "Time to process a range of " << JohnVector.size() << " with [std::list] : " << time_LanaDeque << " us" << std::endl;
 }
 
 /**
@@ -64,8 +64,8 @@ int	main(int argc, char **argv)
 	}
 	
     double time_taken_JohnVector = myPmerge.sortJohnVector();
-	double time_taken_KristyList = 0; // need to be changed
-	printResult(argv, myPmerge.GetJohnVector(), time_taken_JohnVector, time_taken_KristyList);
+	double time_taken_LanaDeque = myPmerge.sortLanaDeque();
+	printResult(argv, myPmerge.GetJohnVector(), time_taken_JohnVector, time_taken_LanaDeque);
 
 	return (SUCCESS);
 }

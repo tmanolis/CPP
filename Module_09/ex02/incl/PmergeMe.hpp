@@ -13,16 +13,14 @@
 # include <sstream>
 # include <vector>
 # include <deque>
-# include <list>
 
 # include <unistd.h>
 
 class PmergeMe
 {
 	private:
-		std::vector<int>	_John_vector;
-		std::list<int>		_Kristy_list;
-		std::deque<int>		_Mydeque;
+		std::vector<int>	_JohnVector;
+		std::deque<int>		_LanaDeque;
 		
 	public:
 		PmergeMe();							// Default Constructor
@@ -34,10 +32,11 @@ class PmergeMe
 		PmergeMe & operator=( PmergeMe const & rhs );
 		// Accessors
 		std::vector<int>	GetJohnVector() const;
-		std::list<int>		GetKristyList() const;
+		std::deque<int>		GetLanaDeque() const;
 		// Member functions
 		bool	isSorted() const;
 		double	sortJohnVector();
+		double	sortLanaDeque();
 };
 
 #endif
